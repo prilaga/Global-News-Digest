@@ -11,30 +11,25 @@ import android.widget.Toast;
 import com.mvp.mobexs.mvp_test.R;
 import com.mvp.mobexs.mvp_test.presenter.LoginPresenter;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class LoginActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
 
-    private EditText editUser;
-    private EditText editPass;
-    private Button btnLogin;
-    private Button btnClear;
-    private ProgressBar progressBar;
+    @BindView(R.id.et_login_username) EditText editUser;
+    @BindView(R.id.et_login_password) EditText editPass;
+    @BindView(R.id.btn_login_login) Button btnLogin;
+    @BindView(R.id.btn_login_clear) Button btnClear;
+    @BindView(R.id.progress_login) ProgressBar progressBar;
+
     private LoginPresenter loginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        //find view
-        editUser = (EditText) this.findViewById(R.id.et_login_username);
-        editPass = (EditText) this.findViewById(R.id.et_login_password);
-        btnLogin = (Button) this.findViewById(R.id.btn_login_login);
-        btnClear = (Button) this.findViewById(R.id.btn_login_clear);
-        progressBar = (ProgressBar) this.findViewById(R.id.progress_login);
-
-        //set listener
-        btnLogin.setOnClickListener(this);
-        btnClear.setOnClickListener(this);
+        ButterKnife.bind(this);
 
         loginPresenter = new LoginPresenter(this);
         loginPresenter.setProgressBarVisibility(View.GONE);
@@ -60,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         progressBar.setVisibility(visibility);
     }
 
-    @Override
+    @OnClick({R.id.btn_login_login, R.id.btn_login_clear})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_login_clear:
