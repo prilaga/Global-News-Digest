@@ -1,4 +1,4 @@
-package com.mvp.mobexs.mvp_test.view;
+package com.mvp.mobexs.mvp_test.mvp.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.mvp.mobexs.mvp_test.R;
-import com.mvp.mobexs.mvp_test.presenter.LoginPresenter;
+import com.mvp.mobexs.mvp_test.mvp.presenter.LoginPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

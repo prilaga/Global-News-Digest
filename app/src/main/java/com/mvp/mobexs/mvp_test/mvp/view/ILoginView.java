@@ -1,4 +1,4 @@
-package com.mvp.mobexs.mvp_test.view;
+package com.mvp.mobexs.mvp_test.mvp.view;
 
 /**
  * Created by Oleg Tarashkevich on 27/03/2017.

@@ -1,4 +1,4 @@
-package com.mvp.mobexs.mvp_test.presenter;
+package com.mvp.mobexs.mvp_test.mvp.presenter;
 
 /**
  * Created by Oleg Tarashkevich on 27/03/2017.

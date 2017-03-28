@@ -1,0 +1,15 @@
+package com.mvp.mobexs.mvp_test.di.component;
+
+import com.mvp.mobexs.mvp_test.di.annotation.ForActivity;
+import com.mvp.mobexs.mvp_test.di.module.ActivityModule;
+
+import dagger.Subcomponent;
+
+/**
+ * Created by Oleg Tarashkevich on 28/03/2017.
+ */
+
+@ForActivity
+@Subcomponent(modules = ActivityModule.class)
+public interface ActivityComponent {
+}

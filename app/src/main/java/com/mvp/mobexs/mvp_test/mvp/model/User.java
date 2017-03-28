@@ -1,4 +1,4 @@
-package com.mvp.mobexs.mvp_test.model;
+package com.mvp.mobexs.mvp_test.mvp.model;
 
 /**
  * Created by Oleg Tarashkevich on 27/03/2017.

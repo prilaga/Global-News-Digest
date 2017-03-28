@@ -1,11 +1,11 @@
-package com.mvp.mobexs.mvp_test.presenter;
+package com.mvp.mobexs.mvp_test.mvp.presenter;
 
 import android.os.Handler;
 import android.os.Looper;
 
-import com.mvp.mobexs.mvp_test.model.IUser;
-import com.mvp.mobexs.mvp_test.model.User;
-import com.mvp.mobexs.mvp_test.view.ILoginView;
+import com.mvp.mobexs.mvp_test.mvp.model.IUser;
+import com.mvp.mobexs.mvp_test.mvp.model.User;
+import com.mvp.mobexs.mvp_test.mvp.view.ILoginView;
 
 /**
  * Created by Oleg Tarashkevich on 27/03/2017.
