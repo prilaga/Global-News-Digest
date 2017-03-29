@@ -2,6 +2,7 @@ package com.mvp.mobexs.mvp_test.di.component;
 
 import com.mvp.mobexs.mvp_test.di.annotation.ForApplication;
 import com.mvp.mobexs.mvp_test.di.module.ActivityModule;
+import com.mvp.mobexs.mvp_test.di.module.AppModule;
 
 import dagger.Component;
 
@@ -10,8 +11,9 @@ import dagger.Component;
  */
 
 @ForApplication
-@Component(modules = AppComponent.class)
+@Component(modules = AppModule.class)
 public interface AppComponent {
 
      ActivityComponent plus(ActivityModule module);
+
 }

@@ -5,7 +5,7 @@ import android.os.Looper;
 
 import com.mvp.mobexs.mvp_test.mvp.model.IUser;
 import com.mvp.mobexs.mvp_test.mvp.model.User;
-import com.mvp.mobexs.mvp_test.mvp.view.ILoginView;
+import com.mvp.mobexs.mvp_test.mvp.view.activity.ILoginView;
 
 /**
  * Created by Oleg Tarashkevich on 27/03/2017.

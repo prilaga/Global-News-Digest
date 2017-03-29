@@ -1,4 +1,4 @@
-package com.mvp.mobexs.mvp_test.mvp.view;
+package com.mvp.mobexs.mvp_test.mvp.view.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
+public class LoginActivity extends BaseActivity implements ILoginView, View.OnClickListener {
 
     @BindView(R.id.et_login_username) EditText editUser;
     @BindView(R.id.et_login_password) EditText editPass;
@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
+        getActivityComponent().inject(this);
         loginPresenter = new LoginPresenter(this);
         loginPresenter.setProgressBarVisibility(View.GONE);
     }
