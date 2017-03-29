@@ -1,6 +1,5 @@
 package com.mvp.mobexs.mvp_test.mvp.view.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +9,8 @@ import android.widget.Toast;
 
 import com.mvp.mobexs.mvp_test.R;
 import com.mvp.mobexs.mvp_test.mvp.presenter.LoginPresenter;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +24,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     @BindView(R.id.btn_login_clear) Button btnClear;
     @BindView(R.id.progress_login) ProgressBar progressBar;
 
-    private LoginPresenter loginPresenter;
+    @Inject LoginPresenter loginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,11 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         getActivityComponent().inject(this);
-        loginPresenter = new LoginPresenter(this);
+
+        editUser.setText("mvp");
+        editPass.setText("mvp");
+
+        loginPresenter.setView(this);
         loginPresenter.setProgressBarVisibility(View.GONE);
     }
 
