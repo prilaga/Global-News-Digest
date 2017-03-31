@@ -20,4 +20,8 @@ public class Article {
         public String urlToImage;
         public Date publishedAt;
     }
+
+    public static class RequestParam{
+
+    }
 }

@@ -19,6 +19,8 @@ public class API {
         String API_KEY = "apiKey";
     }
 
+    public static final String API_KEY = "4c96c741e1444309ad86faafd9774f87";
+
     // https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=4c96c741e1444309ad86faafd9774f87
     public final static String BASE_URL = "https://newsapi.org";
 

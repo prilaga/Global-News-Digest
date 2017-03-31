@@ -42,7 +42,7 @@ public class ArticlePresenter implements IArticlePresenter {
         Map<String, String> params = new HashMap<>();
         params.put(API.QueryParam.SOURCE, "the-next-web");
         params.put(API.QueryParam.SORT_BY, "latest");
-        params.put(API.QueryParam.API_KEY, "4c96c741e1444309ad86faafd9774f87");
+        params.put(API.QueryParam.API_KEY, API.API_KEY);
         mSubscription = SubscriptionUtil.bindObservable(mNetworkService.getArticles(params), articleObserver);
     }
 
