@@ -3,7 +3,6 @@ package com.mvp.mobexs.mvp_test.mvp.presenter;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.mvp.mobexs.mvp_test.di.annotation.ForActivity;
 import com.mvp.mobexs.mvp_test.mvp.model.IUser;
 import com.mvp.mobexs.mvp_test.mvp.model.User;
 import com.mvp.mobexs.mvp_test.mvp.view.activity.ILoginView;
@@ -16,39 +15,40 @@ import javax.inject.Inject;
 
 public class LoginPresenter implements ILoginPresenter {
 
-    private ILoginView iLoginView;
-    private IUser iUser;
+    private ILoginView mLoginView;
+    private IUser mUser;
     private Handler mHandler;
 
     @Inject
     public LoginPresenter() {
-        iUser = new User("mvp", "mvp");
+        mUser = new User("mvp", "mvp");
         mHandler = new Handler(Looper.getMainLooper());
     }
 
+    @Override
     public void setView(ILoginView loginView) {
-        iLoginView = loginView;
+        mLoginView = loginView;
     }
 
     @Override
     public void clear() {
-        iLoginView.onClearText();
+        mLoginView.onClearText();
     }
 
     @Override
     public void doLogin(String name, String password) {
-        final boolean validation = iUser.validate(name, password);
+        final boolean validation = mUser.validate(name, password);
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                iLoginView.onLoginResult(validation);
+                mLoginView.onLoginResult(validation);
             }
         }, 1000);
     }
 
     @Override
     public void setProgressBarVisibility(int visibility) {
-        iLoginView.onSetProgressBarVisibility(visibility);
+        mLoginView.onSetProgressBarVisibility(visibility);
     }
 
 }

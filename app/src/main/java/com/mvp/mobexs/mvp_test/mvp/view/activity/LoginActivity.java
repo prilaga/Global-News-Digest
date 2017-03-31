@@ -8,6 +8,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.mvp.mobexs.mvp_test.R;
+import com.mvp.mobexs.mvp_test.mvp.model.Article;
+import com.mvp.mobexs.mvp_test.mvp.presenter.ArticlePresenter;
 import com.mvp.mobexs.mvp_test.mvp.presenter.LoginPresenter;
 
 import javax.inject.Inject;
@@ -16,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity implements ILoginView, View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.et_login_username) EditText editUser;
     @BindView(R.id.et_login_password) EditText editPass;
@@ -25,6 +27,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     @BindView(R.id.progress_login) ProgressBar progressBar;
 
     @Inject LoginPresenter loginPresenter;
+    @Inject ArticlePresenter articlePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,41 +39,69 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         editUser.setText("mvp");
         editPass.setText("mvp");
 
-        loginPresenter.setView(this);
+        loginPresenter.setView(loginView);
+        articlePresenter.setView(articleView);
+
         loginPresenter.setProgressBarVisibility(View.GONE);
     }
 
-    @Override
-    public void onClearText() {
-        editUser.setText(null);
-        editPass.setText(null);
-    }
+    private ILoginView loginView = new ILoginView() {
+        @Override
+        public void onClearText() {
+            editUser.setText(null);
+            editPass.setText(null);
+        }
 
-    @Override
-    public void onLoginResult(boolean validate) {
-        loginPresenter.setProgressBarVisibility(View.GONE);
-        btnLogin.setEnabled(true);
-        btnClear.setEnabled(true);
-        String message = validate ? "Login Success" : "Login Fail";
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
+        @Override
+        public void onLoginResult(boolean validate) {
+            loginPresenter.setProgressBarVisibility(View.GONE);
+            btnLogin.setEnabled(true);
+            btnClear.setEnabled(true);
+            String message = validate ? "Login Success" : "Login Fail";
+            Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+        }
 
-    @Override
-    public void onSetProgressBarVisibility(int visibility) {
-        progressBar.setVisibility(visibility);
-    }
+        @Override
+        public void onSetProgressBarVisibility(int visibility) {
+            progressBar.setVisibility(visibility);
+        }
+    };
 
-    @OnClick({R.id.btn_login_login, R.id.btn_login_clear})
+    private IArticleView articleView = new IArticleView() {
+        @Override
+        public void onArticleStartLoading() {
+
+        }
+
+        @Override
+        public void onArticleFailure(String message) {
+
+        }
+
+        @Override
+        public void onArticleLoaded(Article article) {
+
+        }
+    };
+
+    @OnClick({R.id.btn_login_login, R.id.btn_login_clear, R.id.btn_load_article})
     public void onClick(View v) {
+
         switch (v.getId()) {
+
             case R.id.btn_login_clear:
                 loginPresenter.clear();
                 break;
+
             case R.id.btn_login_login:
                 loginPresenter.setProgressBarVisibility(View.VISIBLE);
                 btnLogin.setEnabled(false);
                 btnClear.setEnabled(false);
                 loginPresenter.doLogin(editUser.getText().toString(), editPass.getText().toString());
+                break;
+
+            case R.id.btn_load_article:
+                articlePresenter.loadArticles();
                 break;
         }
     }

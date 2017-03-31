@@ -1,10 +1,9 @@
 package com.mvp.mobexs.mvp_test.di.module;
 
+import com.mvp.mobexs.mvp_test.di.annotation.ForApplication;
 import com.mvp.mobexs.mvp_test.util.Logger;
 
 import java.util.concurrent.TimeUnit;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -19,7 +18,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 public class OkHttpClientModule {
 
     @Provides
-    @Singleton
+    @ForApplication
     public OkHttpClient provideOkHttpClient() {
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new Logger());

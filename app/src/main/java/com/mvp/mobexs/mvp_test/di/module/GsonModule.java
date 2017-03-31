@@ -3,9 +3,9 @@ package com.mvp.mobexs.mvp_test.di.module;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mvp.mobexs.mvp_test.di.annotation.ForApplication;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -21,7 +21,7 @@ public class GsonModule {
     public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 
     @Provides
-    @Singleton
+    @ForApplication
     @Named(IDENTITY)
     public Gson provideIdentityGson() {
         return buildGson(FieldNamingPolicy.IDENTITY);
