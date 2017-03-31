@@ -9,7 +9,6 @@ import dagger.Subcomponent;
  * Created by Oleg Tarashkevich on 29/03/2017.
  */
 
-@ForFragment
 @Subcomponent(modules = FragmentModule.class)
 public interface FragmentComponent {
 

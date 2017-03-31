@@ -11,7 +11,6 @@ import dagger.Subcomponent;
  * Created by Oleg Tarashkevich on 28/03/2017.
  */
 
-@ForActivity
 @Subcomponent(modules = ActivityModule.class)
 public interface ActivityComponent {
 

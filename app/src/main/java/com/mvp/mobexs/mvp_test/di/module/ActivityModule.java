@@ -22,7 +22,6 @@ public class ActivityModule {
     }
 
     @Provides
-    @ForActivity
     Activity activity(){
         return this.activity;
     }
