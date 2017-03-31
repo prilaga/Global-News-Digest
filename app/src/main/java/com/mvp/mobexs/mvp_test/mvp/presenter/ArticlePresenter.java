@@ -1,6 +1,7 @@
 package com.mvp.mobexs.mvp_test.mvp.presenter;
 
 import com.mvp.mobexs.mvp_test.mvp.model.Article;
+import com.mvp.mobexs.mvp_test.mvp.model.RequestParam;
 import com.mvp.mobexs.mvp_test.mvp.view.activity.IArticleView;
 import com.mvp.mobexs.mvp_test.network.ApiService;
 import com.mvp.mobexs.mvp_test.util.SubscriptionUtil;
@@ -34,7 +35,8 @@ public class ArticlePresenter implements IArticlePresenter {
     public void loadArticles() {
         unSubscribe();
         mArticleView.onArticleStartLoading();
-        mSubscription = SubscriptionUtil.bindObservable(mApiService.getArticles(), articleObserver);
+        Article.Param param = new Article.Param("the-next-web", RequestParam.SortBy.LATEST);
+        mSubscription = SubscriptionUtil.bindObservable(mApiService.getArticles(param), articleObserver);
     }
 
     private Observer<Article> articleObserver = new Observer<Article>() {

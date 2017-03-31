@@ -26,6 +26,7 @@ ext {
     javaxAnnotationVersion = '1.0'
     eventBusVersion = '3.0.0'
     multidexVersion = '1.0.1'
+    lombokVersion = '1.16.14'
 
     appDependencies = [
             appCompatSupport   : "com.android.support:appcompat-v7:${supportVersion}",
@@ -44,5 +45,6 @@ ext {
             retrofitRxJava     : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
             okHttp3            : "com.squareup.okhttp3:okhttp:${okHttp3Version}",
             loggingInterceptor : "com.squareup.okhttp3:logging-interceptor:${okHttp3Version}",
+            lombok             : "org.projectlombok:lombok:${lombokVersion}",
     ]
 }

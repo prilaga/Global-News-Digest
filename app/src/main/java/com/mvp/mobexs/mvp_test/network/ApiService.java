@@ -2,6 +2,7 @@ package com.mvp.mobexs.mvp_test.network;
 
 import com.mvp.mobexs.mvp_test.di.annotation.ForApplication;
 import com.mvp.mobexs.mvp_test.mvp.model.Article;
+import com.mvp.mobexs.mvp_test.mvp.model.Source;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,11 +24,20 @@ public class ApiService {
     public ApiService() {
     }
 
-    public Observable<Article> getArticles(){
+    public Observable<Article> getArticles(Article.Param param){
         Map<String, String> params = new HashMap<>();
-        params.put(API.QueryParam.SOURCE, "the-next-web");
-        params.put(API.QueryParam.SORT_BY, "latest");
-        params.put(API.QueryParam.API_KEY, API.API_KEY);
+        params.put(API.Query.SOURCE, param.getSource());
+        params.put(API.Query.SORT_BY, param.getSortBy());
+        params.put(API.Query.API_KEY, API.API_KEY);
         return mNetworkService.getArticles(params);
+    }
+
+    public Observable<Source> getSources(Source.Param param){
+        Map<String, String> params = new HashMap<>();
+        params.put(API.Query.CATEGORY, param.getCategory());
+        params.put(API.Query.LANGUAGE, param.getLanguage());
+        params.put(API.Query.COUNTRY, param.getCountry());
+        params.put(API.Query.API_KEY, API.API_KEY);
+        return mNetworkService.getSources(params);
     }
 }

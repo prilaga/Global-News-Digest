@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
 
@@ -51,7 +52,9 @@ dependencies {
     compile appDependencies.okHttp3
     compile appDependencies.loggingInterceptor
 
-    annotationProcessor appDependencies.daggerCompiler
-    annotationProcessor appDependencies.butterKnifeCompiler
+    apt appDependencies.daggerCompiler
+    apt appDependencies.butterKnifeCompiler
+    apt appDependencies.lombok
 
+    provided appDependencies.lombok
 }

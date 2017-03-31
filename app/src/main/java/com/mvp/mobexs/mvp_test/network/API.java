@@ -11,17 +11,18 @@ import java.lang.annotation.RetentionPolicy;
 
 public class API {
 
-    @StringDef({QueryParam.SOURCE, QueryParam.SORT_BY, QueryParam.API_KEY})
+    @StringDef({Query.SOURCE, Query.SORT_BY, Query.API_KEY, Query.CATEGORY, Query.LANGUAGE, Query.COUNTRY})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface QueryParam {
+    public @interface Query {
         String SOURCE = "source";
         String SORT_BY = "sortBy";
         String API_KEY = "apiKey";
+        String CATEGORY = "category";
+        String LANGUAGE = "language";
+        String COUNTRY = "country";
     }
 
     public static final String API_KEY = "4c96c741e1444309ad86faafd9774f87";
-
-    // https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=4c96c741e1444309ad86faafd9774f87
-    public final static String BASE_URL = "https://newsapi.org";
+    public static final String BASE_URL = "https://newsapi.org";
 
 }
