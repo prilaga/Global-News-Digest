@@ -22,6 +22,7 @@ public class OkHttpClientModule {
     public OkHttpClient provideOkHttpClient() {
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new Logger());
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         final OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)

@@ -1,4 +1,4 @@
-package com.mvp.mobexs.mvp_test.service;
+package com.mvp.mobexs.mvp_test.network;
 
 import android.support.annotation.StringDef;
 

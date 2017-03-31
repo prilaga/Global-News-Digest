@@ -2,8 +2,8 @@ package com.mvp.mobexs.mvp_test.mvp.presenter;
 
 import com.mvp.mobexs.mvp_test.mvp.model.Article;
 import com.mvp.mobexs.mvp_test.mvp.view.activity.IArticleView;
-import com.mvp.mobexs.mvp_test.service.API;
-import com.mvp.mobexs.mvp_test.service.NetworkService;
+import com.mvp.mobexs.mvp_test.network.API;
+import com.mvp.mobexs.mvp_test.network.NetworkService;
 import com.mvp.mobexs.mvp_test.util.SubscriptionUtil;
 
 import java.util.HashMap;

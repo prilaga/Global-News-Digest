@@ -2,8 +2,8 @@ package com.mvp.mobexs.mvp_test.di.module;
 
 import com.google.gson.Gson;
 import com.mvp.mobexs.mvp_test.di.annotation.ForApplication;
-import com.mvp.mobexs.mvp_test.service.API;
-import com.mvp.mobexs.mvp_test.service.NetworkService;
+import com.mvp.mobexs.mvp_test.network.API;
+import com.mvp.mobexs.mvp_test.network.NetworkService;
 
 import javax.inject.Named;
 
