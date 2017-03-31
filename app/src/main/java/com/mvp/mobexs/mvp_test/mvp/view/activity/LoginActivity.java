@@ -9,8 +9,10 @@ import android.widget.Toast;
 
 import com.mvp.mobexs.mvp_test.R;
 import com.mvp.mobexs.mvp_test.mvp.model.Article;
-import com.mvp.mobexs.mvp_test.mvp.presenter.ArticlePresenter;
+import com.mvp.mobexs.mvp_test.mvp.model.Source;
+import com.mvp.mobexs.mvp_test.mvp.presenter.news.ArticlePresenter;
 import com.mvp.mobexs.mvp_test.mvp.presenter.LoginPresenter;
+import com.mvp.mobexs.mvp_test.mvp.presenter.news.SourcePresenter;
 
 import javax.inject.Inject;
 
@@ -28,6 +30,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Inject LoginPresenter loginPresenter;
     @Inject ArticlePresenter articlePresenter;
+    @Inject SourcePresenter sourcePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +43,36 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         editPass.setText("mvp");
 
         loginPresenter.setView(loginView);
-        articlePresenter.setView(articleView);
+        articlePresenter.setView(new ArticleView());
+        sourcePresenter.setView(new SourceView());
 
         loginPresenter.setProgressBarVisibility(View.GONE);
+    }
+
+    @OnClick({R.id.btn_login_login, R.id.btn_login_clear, R.id.btn_load_sources, R.id.btn_load_article})
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+
+            case R.id.btn_login_clear:
+                loginPresenter.clear();
+                break;
+
+            case R.id.btn_login_login:
+                loginPresenter.setProgressBarVisibility(View.VISIBLE);
+                btnLogin.setEnabled(false);
+                btnClear.setEnabled(false);
+                loginPresenter.doLogin(editUser.getText().toString(), editPass.getText().toString());
+                break;
+
+            case R.id.btn_load_sources:
+                sourcePresenter.loadData();
+                break;
+
+            case R.id.btn_load_article:
+                articlePresenter.loadData();
+                break;
+        }
     }
 
     private ILoginView loginView = new ILoginView() {
@@ -67,42 +97,37 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
     };
 
-    private IArticleView articleView = new IArticleView() {
+    private class ArticleView implements INewsView<Article> {
         @Override
-        public void onArticleStartLoading() {
+        public void onStartLoading() {
 
         }
 
         @Override
-        public void onArticleFailure(String message) {
+        public void onFailure(String message) {
 
         }
 
         @Override
-        public void onArticleLoaded(Article article) {
+        public void onLoaded(Article article) {
 
         }
-    };
+    }
 
-    @OnClick({R.id.btn_login_login, R.id.btn_login_clear, R.id.btn_load_article})
-    public void onClick(View v) {
+    private class SourceView implements INewsView<Source> {
+        @Override
+        public void onStartLoading() {
 
-        switch (v.getId()) {
+        }
 
-            case R.id.btn_login_clear:
-                loginPresenter.clear();
-                break;
+        @Override
+        public void onFailure(String message) {
 
-            case R.id.btn_login_login:
-                loginPresenter.setProgressBarVisibility(View.VISIBLE);
-                btnLogin.setEnabled(false);
-                btnClear.setEnabled(false);
-                loginPresenter.doLogin(editUser.getText().toString(), editPass.getText().toString());
-                break;
+        }
 
-            case R.id.btn_load_article:
-                articlePresenter.loadArticles();
-                break;
+        @Override
+        public void onLoaded(Source source) {
+
         }
     }
 }

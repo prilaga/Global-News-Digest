@@ -19,10 +19,10 @@ public class RequestParam {
         String POPULAR = "popular";
     }
 
-    @StringDef({Language.AU, Language.DE, Language.GB})
+    @StringDef({Language.EN, Language.DE, Language.GB})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Language {
-        String AU = "en";
+        String EN = "en";
         String DE = "de";
         String GB = "fr";
     }

@@ -1,8 +1,8 @@
-package com.mvp.mobexs.mvp_test.mvp.presenter;
+package com.mvp.mobexs.mvp_test.mvp.presenter.news;
 
 import com.mvp.mobexs.mvp_test.mvp.model.Article;
 import com.mvp.mobexs.mvp_test.mvp.model.RequestParam;
-import com.mvp.mobexs.mvp_test.mvp.view.activity.IArticleView;
+import com.mvp.mobexs.mvp_test.mvp.view.activity.INewsView;
 import com.mvp.mobexs.mvp_test.network.ApiService;
 import com.mvp.mobexs.mvp_test.util.SubscriptionUtil;
 
@@ -15,10 +15,10 @@ import rx.Subscription;
  * Created by Oleg Tarashkevich on 31/03/2017.
  */
 
-public class ArticlePresenter implements IArticlePresenter {
+public class ArticlePresenter implements INewsPresenter<INewsView<Article>> {
 
     private ApiService mApiService;
-    private IArticleView mArticleView;
+    private INewsView<Article> mArticleView;
     private Subscription mSubscription;
 
     @Inject
@@ -27,14 +27,14 @@ public class ArticlePresenter implements IArticlePresenter {
     }
 
     @Override
-    public void setView(IArticleView articleView) {
+    public void setView(INewsView<Article> articleView) {
         mArticleView = articleView;
     }
 
     @Override
-    public void loadArticles() {
+    public void loadData() {
         unSubscribe();
-        mArticleView.onArticleStartLoading();
+        mArticleView.onStartLoading();
         Article.Param param = new Article.Param("the-next-web", RequestParam.SortBy.LATEST);
         mSubscription = SubscriptionUtil.bindObservable(mApiService.getArticles(param), articleObserver);
     }
@@ -47,12 +47,12 @@ public class ArticlePresenter implements IArticlePresenter {
 
         @Override
         public void onError(Throwable e) {
-            mArticleView.onArticleFailure(e.toString());
+            mArticleView.onFailure(e.toString());
         }
 
         @Override
         public void onNext(Article article) {
-            mArticleView.onArticleLoaded(article);
+            mArticleView.onLoaded(article);
         }
     };
 
