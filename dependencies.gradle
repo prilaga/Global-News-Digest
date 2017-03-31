@@ -22,6 +22,7 @@ ext {
     rxJavaVersion = '1.1.6'
     rxAndroidVersion = '1.2.1'
     retrofitVersion = '2.2.0'
+    okHttp3Version = '3.6.0'
     javaxAnnotationVersion = '1.0'
     eventBusVersion = '3.0.0'
     multidexVersion = '1.0.1'
@@ -40,6 +41,8 @@ ext {
             multidex           : "com.android.support:multidex:${multidexVersion}",
             retrofit           : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             converterGson      : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-            retrofitRxJava     : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
+            retrofitRxJava     : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            okHttp3            : "com.squareup.okhttp3:okhttp:${okHttp3Version}",
+            loggingInterceptor : "com.squareup.okhttp3:logging-interceptor:${okHttp3Version}",
     ]
 }
