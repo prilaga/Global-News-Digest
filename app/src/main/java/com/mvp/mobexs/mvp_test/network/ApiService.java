@@ -23,10 +23,11 @@ public class ApiService {
     public ApiService() {
     }
 
-//    public Observable<Article> getArticles(){
-//        Map<String, String> params = new HashMap<>();
-//        params.put(API.QueryParam.SOURCE, "the-next-web");
-//        params.put(API.QueryParam.SORT_BY, "latest");
-//        params.put(API.QueryParam.API_KEY, API.API_KEY);
-//    }
+    public Observable<Article> getArticles(){
+        Map<String, String> params = new HashMap<>();
+        params.put(API.QueryParam.SOURCE, "the-next-web");
+        params.put(API.QueryParam.SORT_BY, "latest");
+        params.put(API.QueryParam.API_KEY, API.API_KEY);
+        return mNetworkService.getArticles(params);
+    }
 }
