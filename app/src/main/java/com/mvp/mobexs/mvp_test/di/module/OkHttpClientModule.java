@@ -28,6 +28,7 @@ public class OkHttpClientModule {
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
+                .addInterceptor(new HeadersInterceptor())
                 .addInterceptor(loggingInterceptor);
 
         return builder.build();

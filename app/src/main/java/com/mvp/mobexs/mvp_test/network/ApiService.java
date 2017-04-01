@@ -32,7 +32,6 @@ public class ApiService {
             params.put(API.Query.SOURCE, param.getSource());
         if (!TextUtils.isEmpty(param.getSortBy()))
             params.put(API.Query.SORT_BY, param.getSortBy());
-        params.put(API.Query.API_KEY, API.API_KEY);
         return mNetworkService.getArticles(params);
     }
 
@@ -44,7 +43,6 @@ public class ApiService {
             params.put(API.Query.LANGUAGE, param.getLanguage());
         if (!TextUtils.isEmpty(param.getCountry()))
             params.put(API.Query.COUNTRY, param.getCountry());
-        params.put(API.Query.API_KEY, API.API_KEY);
         return mNetworkService.getSources(params);
     }
 }
