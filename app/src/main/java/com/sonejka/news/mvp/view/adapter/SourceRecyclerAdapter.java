@@ -9,13 +9,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
-import com.sonejka.news.R;
+
+import javax.inject.Inject;
 
 /**
  * Created by Oleg Tarashkevich on 01.04.17.
  */
 
 public class SourceRecyclerAdapter extends RecyclerView.Adapter<SourceRecyclerAdapter.ViewHolder> implements FastScrollRecyclerView.SectionedAdapter {
+
+    @Inject
+    public SourceRecyclerAdapter() {
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

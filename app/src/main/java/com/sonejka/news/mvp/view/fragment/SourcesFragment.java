@@ -2,6 +2,7 @@ package com.sonejka.news.mvp.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ public class SourcesFragment extends BaseFragment {
     @BindView(R.id.recycler_view) FastScrollRecyclerView recyclerView;
 
     @Inject SourcePresenter sourcePresenter;
+    @Inject SourceRecyclerAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,8 +37,8 @@ public class SourcesFragment extends BaseFragment {
         ButterKnife.bind(this, rootView);
         getFragmentComponent().inject(this);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new SourceRecyclerAdapter());
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        recyclerView.setAdapter(adapter);
 
         return rootView;
     }
