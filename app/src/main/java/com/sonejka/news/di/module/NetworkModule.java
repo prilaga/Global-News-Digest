@@ -1,11 +1,20 @@
 package com.sonejka.news.di.module;
 
+import android.content.Context;
+import android.net.Uri;
+
 import com.google.gson.Gson;
+import com.jakewharton.picasso.OkHttp3Downloader;
 import com.sonejka.news.di.annotation.ForApplication;
 import com.sonejka.news.network.API;
 import com.sonejka.news.network.NetworkService;
+import com.sonejka.news.util.Logger;
+import com.squareup.picasso.Picasso;
+
+import java.util.concurrent.Executors;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -24,7 +33,7 @@ public class NetworkModule {
 
     @Provides
     @ForApplication
-    NetworkService provideNetworkService(@Named(GsonModule.IDENTITY) Gson gson, OkHttpClient httpClient) {
+    NetworkService provideNetworkService(@Named(GsonModule.IDENTITY) Gson gson, @Named(OkHttpClientModule.API_CLIENT) OkHttpClient httpClient) {
 
         Converter.Factory factory = GsonConverterFactory.create(gson);
 
@@ -39,4 +48,20 @@ public class NetworkModule {
         return retrofit.create(NetworkService.class);
     }
 
+    @Provides
+    @ForApplication
+    Picasso providePicasso(@ForApplication Context context, @Named(OkHttpClientModule.PICASSO_CLIENT) OkHttpClient okHttpClient) {
+        return new Picasso.Builder(context)
+                .listener(new Picasso.Listener() {
+                    @Override
+                    public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception) {
+                        if (uri != null)
+                            Logger.i("Picasso onImageLoadFailed: " + exception.toString() + "\n" + uri.toString());
+                        else
+                            Logger.i("Picasso onImageLoadFailed: " + exception.toString());
+                    }
+                })
+                .downloader(new OkHttp3Downloader(okHttpClient)).executor(Executors.newSingleThreadExecutor())
+                .build();
+    }
 }

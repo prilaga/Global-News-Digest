@@ -3,6 +3,8 @@ package com.sonejka.news.di.module;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.sonejka.news.di.annotation.ForActivity;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -20,11 +22,13 @@ public class ActivityModule {
     }
 
     @Provides
+    @ForActivity
     AppCompatActivity activity() {
         return this.activity;
     }
 
     @Provides
+    @ForActivity
     FragmentManager providesFragmentManager(AppCompatActivity activity) {
         return activity.getSupportFragmentManager();
     }

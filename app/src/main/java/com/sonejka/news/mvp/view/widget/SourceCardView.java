@@ -7,7 +7,11 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.sonejka.news.R;
+import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.activity.BaseActivity;
+import com.squareup.picasso.Picasso;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,6 +25,8 @@ public class SourceCardView extends CardView {
     @BindView(R.id.name_text_view) TextView nameTextView;
     @BindView(R.id.description_text_view) TextView descriptionTextView;
     @BindView(R.id.url_text_view) TextView urlTextView;
+
+    @Inject Picasso picasso;
 
     public SourceCardView(Context context) {
         this(context, null);
@@ -38,12 +44,15 @@ public class SourceCardView extends CardView {
     private void init() {
         LayoutInflater.from(getContext()).inflate(R.layout.source_cardview, this);
         ButterKnife.bind(this);
-    }
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+        if (isInEditMode()) return;
         BaseActivity activity = (BaseActivity)getContext();
         activity.getActivityComponent().inject(this);
+    }
+
+    public void setSource(Source.Entry entry){
+       nameTextView.setText(entry.getInfo());
+       nameTextView.setText(entry.getDescription());
+       nameTextView.setText(entry.getUrl());
     }
 }

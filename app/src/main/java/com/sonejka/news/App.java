@@ -6,6 +6,7 @@ import android.content.Context;
 import com.sonejka.news.di.component.AppComponent;
 import com.sonejka.news.di.component.DaggerAppComponent;
 import com.sonejka.news.di.module.AppModule;
+import com.sonejka.news.util.Logger;
 
 import lombok.Getter;
 import lombok.experimental.Accessors;
@@ -24,6 +25,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         sContext = getApplicationContext();
+        Logger.enableLogging(BuildConfig.DEBUG);
         buildGraph();
     }
 

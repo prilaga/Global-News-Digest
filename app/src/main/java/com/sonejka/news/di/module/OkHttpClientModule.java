@@ -5,6 +5,8 @@ import com.sonejka.news.util.Logger;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
@@ -17,7 +19,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
 @Module
 public class OkHttpClientModule {
 
-    @Provides
+    public static final String API_CLIENT = "API_CLIENT";
+    public static final String PICASSO_CLIENT = "PICASSO_CLIENT";
+
+    @Provides @Named(API_CLIENT)
     @ForApplication
     public OkHttpClient provideOkHttpClient() {
 
@@ -32,5 +37,11 @@ public class OkHttpClientModule {
                 .addInterceptor(loggingInterceptor);
 
         return builder.build();
+    }
+
+    @Provides @Named(PICASSO_CLIENT)
+    @ForApplication
+    public OkHttpClient providePicassoHttpClient(){
+        return new OkHttpClient();
     }
 }

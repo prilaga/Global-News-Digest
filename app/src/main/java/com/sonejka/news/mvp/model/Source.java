@@ -24,6 +24,10 @@ public class Source {
         @Getter private String country;
         @Getter private Logos urlsToLogos;
         @Getter private List<String> sortBysAvailable;
+
+        public String getInfo() {
+            return name = " | " + category;
+        }
     }
 
     public static class Logos {

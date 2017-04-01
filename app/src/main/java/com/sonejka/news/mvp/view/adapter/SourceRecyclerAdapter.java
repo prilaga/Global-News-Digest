@@ -10,8 +10,12 @@ import android.widget.TextView;
 
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 import com.sonejka.news.mvp.model.Source;
+import com.sonejka.news.mvp.view.widget.SourceCardView;
 
 import javax.inject.Inject;
+
+import lombok.Getter;
+import lombok.experimental.Accessors;
 
 /**
  * Created by Oleg Tarashkevich on 01.04.17.
@@ -27,13 +31,13 @@ public class SourceRecyclerAdapter
 
     @Override
     public SourceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new SourceViewHolder(LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false));
+        return new SourceViewHolder(new SourceCardView(parent.getContext()));
     }
 
     @SuppressLint("DefaultLocale")
     @Override
-    protected void onBindViewHolder(SourceViewHolder holder, Source.Entry source, int position) {
-        holder.text.setText(source.getDescription());
+    protected void onBindViewHolder(SourceViewHolder holder, Source.Entry entry, int position) {
+        holder.getSourceCardView().setSource(entry);
     }
 
     @NonNull
@@ -43,11 +47,11 @@ public class SourceRecyclerAdapter
     }
 
     static class SourceViewHolder extends RecyclerView.ViewHolder {
-        public TextView text;
+        @Getter @Accessors(prefix = "m") SourceCardView mSourceCardView;
 
-        public SourceViewHolder(View itemView) {
+        SourceViewHolder(SourceCardView itemView) {
             super(itemView);
-            text = (TextView) itemView.findViewById(android.R.id.text1);
+            mSourceCardView = itemView;
         }
     }
 }

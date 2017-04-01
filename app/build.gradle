@@ -53,6 +53,8 @@ dependencies {
     compile appDependencies.retrofitRxJava
     compile appDependencies.okHttp3
     compile appDependencies.loggingInterceptor
+    compile appDependencies.picasso
+    compile appDependencies.picassoDownloader
 
     apt appDependencies.daggerCompiler
     apt appDependencies.butterKnifeCompiler

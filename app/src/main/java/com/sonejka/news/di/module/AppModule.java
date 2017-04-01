@@ -3,6 +3,7 @@ package com.sonejka.news.di.module;
 import android.content.Context;
 
 import com.sonejka.news.App;
+import com.sonejka.news.di.annotation.ForApplication;
 
 import javax.inject.Singleton;
 
@@ -23,13 +24,13 @@ public class AppModule {
     }
 
     @Provides
-    @Singleton
+    @ForApplication
     Context provideContext() {
         return application;
     }
 
     @Provides
-    @Singleton
+    @ForApplication
     App provideApp() {
         return application;
     }
