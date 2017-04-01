@@ -12,7 +12,6 @@ import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.presenter.news.SourcePresenter;
-import com.sonejka.news.mvp.view.activity.INewsView;
 import com.sonejka.news.mvp.view.adapter.SourceRecyclerAdapter;
 
 import javax.inject.Inject;
@@ -37,7 +36,7 @@ public class SourcesFragment extends BaseFragment {
         ButterKnife.bind(this, rootView);
         getFragmentComponent().inject(this);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
         return rootView;
@@ -46,7 +45,7 @@ public class SourcesFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         sourcePresenter.setView(new SourceView());
-//        sourcePresenter.loadData();
+        sourcePresenter.loadData();
     }
 
     private class SourceView implements INewsView<Source> {
@@ -61,8 +60,8 @@ public class SourcesFragment extends BaseFragment {
         }
 
         @Override
-        public void onLoaded(Source source) {
-
+        public void updateRecycleView(Source source) {
+           adapter.setData(source.getSources());
         }
     }
 }

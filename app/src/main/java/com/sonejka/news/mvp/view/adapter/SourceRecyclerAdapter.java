@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
+import com.sonejka.news.mvp.model.Source;
 
 import javax.inject.Inject;
 
@@ -16,26 +17,23 @@ import javax.inject.Inject;
  * Created by Oleg Tarashkevich on 01.04.17.
  */
 
-public class SourceRecyclerAdapter extends RecyclerView.Adapter<SourceRecyclerAdapter.ViewHolder> implements FastScrollRecyclerView.SectionedAdapter {
+public class SourceRecyclerAdapter
+        extends BaseRecyclerAdapter<Source.Entry, SourceRecyclerAdapter.SourceViewHolder>
+        implements FastScrollRecyclerView.SectionedAdapter {
 
     @Inject
     public SourceRecyclerAdapter() {
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false));
+    public SourceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new SourceViewHolder(LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false));
     }
 
     @SuppressLint("DefaultLocale")
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.text.setText(String.format("Item %d", position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return 100;
+    protected void onBindViewHolder(SourceViewHolder holder, Source.Entry source, int position) {
+        holder.text.setText(source.getDescription());
     }
 
     @NonNull
@@ -44,10 +42,10 @@ public class SourceRecyclerAdapter extends RecyclerView.Adapter<SourceRecyclerAd
         return String.valueOf(position);
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class SourceViewHolder extends RecyclerView.ViewHolder {
         public TextView text;
 
-        public ViewHolder(View itemView) {
+        public SourceViewHolder(View itemView) {
             super(itemView);
             text = (TextView) itemView.findViewById(android.R.id.text1);
         }

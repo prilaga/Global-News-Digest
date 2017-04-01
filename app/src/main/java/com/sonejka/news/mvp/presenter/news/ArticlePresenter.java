@@ -2,7 +2,7 @@ package com.sonejka.news.mvp.presenter.news;
 
 import com.sonejka.news.mvp.model.Article;
 import com.sonejka.news.mvp.model.RequestParam;
-import com.sonejka.news.mvp.view.activity.INewsView;
+import com.sonejka.news.mvp.view.fragment.INewsView;
 import com.sonejka.news.network.ApiService;
 import com.sonejka.news.util.SubscriptionUtil;
 
@@ -52,7 +52,8 @@ public class ArticlePresenter implements INewsPresenter<INewsView<Article>> {
 
         @Override
         public void onNext(Article article) {
-            mArticleView.onLoaded(article);
+            if (article != null)
+                mArticleView.updateRecycleView(article);
         }
     };
 

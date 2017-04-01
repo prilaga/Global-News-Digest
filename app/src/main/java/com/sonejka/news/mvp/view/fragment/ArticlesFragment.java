@@ -11,8 +11,7 @@ import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Article;
 import com.sonejka.news.mvp.presenter.news.ArticlePresenter;
-import com.sonejka.news.mvp.view.activity.INewsView;
-import com.sonejka.news.mvp.view.adapter.SourceRecyclerAdapter;
+import com.sonejka.news.mvp.view.adapter.ArticleRecyclerAdapter;
 
 import javax.inject.Inject;
 
@@ -28,7 +27,7 @@ public class ArticlesFragment extends BaseFragment {
     @BindView(R.id.recycler_view) FastScrollRecyclerView recyclerView;
 
     @Inject ArticlePresenter articlePresenter;
-    @Inject SourceRecyclerAdapter adapter;
+    @Inject ArticleRecyclerAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class ArticlesFragment extends BaseFragment {
         }
 
         @Override
-        public void onLoaded(Article article) {
+        public void updateRecycleView(Article article) {
 
         }
     }

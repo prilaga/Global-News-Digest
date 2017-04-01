@@ -11,7 +11,7 @@ import com.sonejka.news.App;
  * Created by Oleg Tarashkevich on 01.04.17.
  */
 
-public class TextUtil {
+public final class TextUtil {
 
     /**
      * Get string resources

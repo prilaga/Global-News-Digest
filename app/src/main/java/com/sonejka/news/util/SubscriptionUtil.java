@@ -10,7 +10,7 @@ import rx.schedulers.Schedulers;
  * Created by Oleg Tarashkevich on 31/03/2017.
  */
 
-public class SubscriptionUtil {
+public final class SubscriptionUtil {
 
     public static <T> Subscription bindObservable(Observable<T> observable, Observer<T> observer) {
         return observable

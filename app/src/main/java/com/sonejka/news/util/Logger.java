@@ -8,7 +8,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
  * Created by Oleg Tarashkevich on 31/03/2017.
  */
 
-public class Logger implements HttpLoggingInterceptor.Logger {
+public final class Logger implements HttpLoggingInterceptor.Logger {
 
     public static final String TAG = "LOG";
 
