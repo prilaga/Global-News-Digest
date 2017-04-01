@@ -15,16 +15,12 @@ import com.sonejka.news.di.module.ActivityModule;
 
 public class BaseActivity extends AppCompatActivity {
 
-    protected ActivityComponent activityComponent;
+    private ActivityComponent activityComponent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setComponent();
-    }
-
-    protected void setComponent(){
-        activityComponent = getActivityComponent();
+        getActivityComponent();
     }
 
     /**
@@ -32,7 +28,7 @@ public class BaseActivity extends AppCompatActivity {
      *
      * @return {@link AppComponent}
      */
-    protected AppComponent getAppComponent(){
+    protected AppComponent getAppComponent() {
         App app = (App) getApplication();
         return app.getAppComponent();
     }
@@ -42,7 +38,7 @@ public class BaseActivity extends AppCompatActivity {
      *
      * @return {@link ActivityModule}
      */
-    protected ActivityModule getActivityModule(){
+    protected ActivityModule getActivityModule() {
         return new ActivityModule(this);
     }
 
@@ -51,7 +47,9 @@ public class BaseActivity extends AppCompatActivity {
      *
      * @return {@link ActivityComponent}
      */
-    protected ActivityComponent getActivityComponent(){
-        return getAppComponent().plus(getActivityModule());
+    public ActivityComponent getActivityComponent() {
+        if (activityComponent == null)
+            activityComponent = getAppComponent().plus(getActivityModule());
+        return activityComponent;
     }
 }

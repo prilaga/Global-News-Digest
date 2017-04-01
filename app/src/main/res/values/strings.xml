@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MVP_Test</string>
+
+    <string name="sources">Sources</string>
+    <string name="articles">Articles</string>
+
 </resources>

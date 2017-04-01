@@ -1,7 +1,7 @@
 package com.sonejka.news.di.module;
 
-
-import android.app.Activity;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,15 +13,19 @@ import dagger.Provides;
 @Module
 public class ActivityModule {
 
-    private final Activity activity;
+    private final AppCompatActivity activity;
 
-    public ActivityModule(Activity activity){
-     this.activity = activity;
+    public ActivityModule(AppCompatActivity activity) {
+        this.activity = activity;
     }
 
     @Provides
-    Activity activity(){
+    AppCompatActivity activity() {
         return this.activity;
     }
 
+    @Provides
+    FragmentManager providesFragmentManager(AppCompatActivity activity) {
+        return activity.getSupportFragmentManager();
+    }
 }

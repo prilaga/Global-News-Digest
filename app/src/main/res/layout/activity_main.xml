@@ -24,7 +24,7 @@
         </LinearLayout>
 
         <com.sonejka.news.mvp.view.widget.NewsTabLayout
-            android:id="@+id/message_tabs"
+            android:id="@+id/news_tabs"
             style="@style/Widget.TabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
