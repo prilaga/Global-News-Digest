@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sonejka.news.R;
@@ -22,6 +23,7 @@ import butterknife.ButterKnife;
 
 public class SourceCardView extends CardView {
 
+    @BindView(R.id.source_logo_view) ImageView logoImageView;
     @BindView(R.id.name_text_view) TextView nameTextView;
     @BindView(R.id.description_text_view) TextView descriptionTextView;
     @BindView(R.id.url_text_view) TextView urlTextView;
@@ -42,17 +44,22 @@ public class SourceCardView extends CardView {
     }
 
     private void init() {
-        LayoutInflater.from(getContext()).inflate(R.layout.source_cardview, this);
+        LayoutInflater.from(getContext()).inflate(R.layout.cardview_source, this);
         ButterKnife.bind(this);
 
         if (isInEditMode()) return;
-        BaseActivity activity = (BaseActivity)getContext();
+        BaseActivity activity = (BaseActivity) getContext();
         activity.getActivityComponent().inject(this);
     }
 
-    public void setSource(Source.Entry entry){
-       nameTextView.setText(entry.getInfo());
-       nameTextView.setText(entry.getDescription());
-       nameTextView.setText(entry.getUrl());
+    public void setSource(Source.Entry entry) {
+        nameTextView.setText(entry.getInfo());
+        descriptionTextView.setText(entry.getDescription());
+        urlTextView.setText(entry.getUrl());
+
+        picasso.load(entry.getUrlsToLogos().getMedium())
+                .centerInside()
+                .fit()
+                .into(logoImageView);
     }
 }

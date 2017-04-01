@@ -26,7 +26,7 @@ public class Source {
         @Getter private List<String> sortBysAvailable;
 
         public String getInfo() {
-            return name = " | " + category;
+            return name + " | " + category;
         }
     }
 

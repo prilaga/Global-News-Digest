@@ -1,21 +1,20 @@
 package com.sonejka.news.mvp.view.adapter;
 
-import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
+import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.widget.SourceCardView;
 
 import javax.inject.Inject;
 
-import lombok.Getter;
-import lombok.experimental.Accessors;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Oleg Tarashkevich on 01.04.17.
@@ -31,13 +30,12 @@ public class SourceRecyclerAdapter
 
     @Override
     public SourceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new SourceViewHolder(new SourceCardView(parent.getContext()));
+        return new SourceViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_source, parent, false));
     }
 
-    @SuppressLint("DefaultLocale")
     @Override
     protected void onBindViewHolder(SourceViewHolder holder, Source.Entry entry, int position) {
-        holder.getSourceCardView().setSource(entry);
+        holder.cardView.setSource(entry);
     }
 
     @NonNull
@@ -47,11 +45,11 @@ public class SourceRecyclerAdapter
     }
 
     static class SourceViewHolder extends RecyclerView.ViewHolder {
-        @Getter @Accessors(prefix = "m") SourceCardView mSourceCardView;
+        @BindView(R.id.source_card_view) SourceCardView cardView;
 
-        SourceViewHolder(SourceCardView itemView) {
+        public SourceViewHolder(View itemView) {
             super(itemView);
-            mSourceCardView = itemView;
+            ButterKnife.bind(this, itemView);
         }
     }
 }
