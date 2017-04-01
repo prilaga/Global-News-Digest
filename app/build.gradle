@@ -16,7 +16,7 @@ android {
         targetSdkVersion 25
         versionCode versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionBuild}"
-        archivesBaseName = "MVP $versionName"
+        archivesBaseName = "News $versionName"
     }
 
 
@@ -39,6 +39,7 @@ dependencies {
 
     compile appDependencies.appCompatSupport
     compile appDependencies.designAndroid
+    compile appDependencies.cardView
     compile appDependencies.fastScroll
     compile appDependencies.dagger
     compile appDependencies.butterKnife
