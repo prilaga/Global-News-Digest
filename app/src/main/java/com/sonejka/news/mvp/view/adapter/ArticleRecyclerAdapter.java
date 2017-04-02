@@ -43,11 +43,11 @@ public class ArticleRecyclerAdapter
     @NonNull
     @Override
     public String getSectionName(int position) {
-        return getItem(position).getAuthor();
+        return getItem(position).getPublishedDate();
     }
 
     static class ArticleViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.source_card_view) ArticleCardView cardView;
+        @BindView(R.id.article_card_view) ArticleCardView cardView;
 
         public ArticleViewHolder(View itemView) {
             super(itemView);

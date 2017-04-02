@@ -6,8 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/selector_ripple">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/source_logo_view"
@@ -25,7 +24,6 @@
             android:layout_marginStart="@dimen/m_size"
             android:layout_toEndOf="@id/source_logo_view"
             android:layout_toRightOf="@id/source_logo_view"
-            android:background="@drawable/selector_ripple"
             android:gravity="center_vertical"
             android:orientation="vertical">
 

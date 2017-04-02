@@ -5,9 +5,10 @@
              android:layout_height="wrap_content">
 
     <com.sonejka.news.mvp.view.widget.ArticleCardView
-        android:id="@+id/source_card_view"
+        android:id="@+id/article_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector_ripple"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/l_size"
         app:cardElevation="@dimen/l_size"

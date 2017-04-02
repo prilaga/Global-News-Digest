@@ -16,7 +16,7 @@ android {
         targetSdkVersion 25
         versionCode versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionBuild}"
-        archivesBaseName = "News $versionName"
+        archivesBaseName = "Global News Digest $versionName"
     }
 
 
