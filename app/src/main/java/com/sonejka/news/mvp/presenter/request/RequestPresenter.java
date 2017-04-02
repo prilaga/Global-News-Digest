@@ -73,6 +73,14 @@ public class RequestPresenter implements IRequestPresenter{
             mSubscription.unsubscribe();
     }
 
+    private void loadParamData(){
+
+    }
+
+    private void saveParamData(){
+
+    }
+
     private Observer<Void> requestObserver = new Observer<Void>() {
         @Override
         public void onCompleted() {
