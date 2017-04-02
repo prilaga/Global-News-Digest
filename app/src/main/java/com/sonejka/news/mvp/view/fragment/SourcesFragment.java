@@ -49,8 +49,8 @@ public class SourcesFragment extends BaseFragment implements INewsView<Source, S
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         sourcePresenter.setView(this);
-//        onDataLoadEvent(Source.param());
-        onDataLoadEvent(Source.param(RequestParam.Category.BUSINESS, RequestParam.Language.EN, RequestParam.Country.US));
+        onDataLoadEvent(Source.param());
+//        onDataLoadEvent(Source.param(RequestParam.Category.BUSINESS, RequestParam.Language.EN, RequestParam.Country.US));
     }
 
     @Override

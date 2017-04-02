@@ -1,7 +1,5 @@
 package com.sonejka.news.mvp.model;
 
-import com.sonejka.news.util.TextUtil;
-
 import java.util.List;
 
 import lombok.Getter;

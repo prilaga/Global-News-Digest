@@ -5,6 +5,7 @@ import com.sonejka.news.di.module.ActivityModule;
 import com.sonejka.news.di.module.FragmentModule;
 import com.sonejka.news.mvp.view.activity.MainActivity;
 import com.sonejka.news.mvp.view.widget.ArticleCardView;
+import com.sonejka.news.mvp.view.widget.RequestCardView;
 import com.sonejka.news.mvp.view.widget.SourceCardView;
 
 import dagger.Subcomponent;
@@ -24,4 +25,6 @@ public interface ActivityComponent {
     void inject(SourceCardView cardView);
 
     void inject(ArticleCardView cardView);
+
+    void inject(RequestCardView cardView);
 }
