@@ -11,8 +11,12 @@ import android.view.ViewGroup;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Article;
+import com.sonejka.news.mvp.model.RequestParam;
 import com.sonejka.news.mvp.presenter.news.ArticlePresenter;
 import com.sonejka.news.mvp.view.adapter.ArticleRecyclerAdapter;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
@@ -23,7 +27,7 @@ import butterknife.ButterKnife;
  * Created by Oleg Tarashkevich on 01.04.17.
  */
 
-public class ArticlesFragment extends BaseFragment {
+public class ArticlesFragment extends BaseFragment implements INewsView<Article, Article.Param> {
 
     @BindView(R.id.recycler_view) FastScrollRecyclerView recyclerView;
 
@@ -44,24 +48,43 @@ public class ArticlesFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        articlePresenter.setView(new ArticleView());
-        articlePresenter.loadData();
+        articlePresenter.setView(this);
+//        onDataLoadEvent(Article.param());
+        onDataLoadEvent(Article.param("the-next-web", RequestParam.SortBy.LATEST));
     }
 
-    private class ArticleView implements INewsView<Article> {
-        @Override
-        public void onStartLoading() {
-
-        }
-
-        @Override
-        public void onFailure(String message) {
-
-        }
-
-        @Override
-        public void updateRecycleView(Article article) {
-            adapter.setData(article.getArticles());
-        }
+    @Override
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+    }
+
+    // region INewsView
+    @Subscribe
+    @Override
+    public void onDataLoadEvent(Article.Param param) {
+        articlePresenter.loadData(param);
+    }
+
+    @Override
+    public void onStartLoading() {
+
+    }
+
+    @Override
+    public void onFailure(String message) {
+
+    }
+
+    @Override
+    public void updateRecycleView(Article article) {
+        adapter.setData(article.getArticles());
+    }
+    // endregion
 }

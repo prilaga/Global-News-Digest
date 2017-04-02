@@ -11,25 +11,28 @@ import java.lang.annotation.RetentionPolicy;
 
 public class RequestParam {
 
-    @StringDef({SortBy.TOP, SortBy.LATEST, SortBy.POPULAR})
+    @StringDef({SortBy.DEFAULT, SortBy.TOP, SortBy.LATEST, SortBy.POPULAR})
     @Retention(RetentionPolicy.SOURCE)
     public @interface SortBy {
+        String DEFAULT = "default";
         String TOP = "top";
         String LATEST = "latest";
         String POPULAR = "popular";
     }
 
-    @StringDef({Language.EN, Language.DE, Language.GB})
+    @StringDef({Language.DEFAULT, Language.EN, Language.DE, Language.GB})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Language {
+        String DEFAULT = "default";
         String EN = "en";
         String DE = "de";
         String GB = "fr";
     }
 
-    @StringDef({Country.AU, Country.DE, Country.GB, Country.IN, Country.IT, Country.US})
+    @StringDef({Country.DEFAULT, Country.AU, Country.DE, Country.GB, Country.IN, Country.IT, Country.US})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Country {
+        String DEFAULT = "default";
         String AU = "au";
         String DE = "de";
         String GB = "gb";
@@ -39,6 +42,7 @@ public class RequestParam {
     }
 
     @StringDef({
+            Category.DEFAULT,
             Category.BUSINESS,
             Category.ENTERTAINMENT,
             Category.GAMING,
@@ -50,6 +54,7 @@ public class RequestParam {
             Category.TECHNOLOGY})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Category {
+        String DEFAULT = "default";
         String BUSINESS = "business";
         String ENTERTAINMENT = "entertainment";
         String GAMING = "gaming";

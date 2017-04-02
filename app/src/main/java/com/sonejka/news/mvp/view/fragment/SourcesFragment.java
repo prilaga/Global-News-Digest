@@ -10,9 +10,13 @@ import android.view.ViewGroup;
 
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 import com.sonejka.news.R;
+import com.sonejka.news.mvp.model.RequestParam;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.presenter.news.SourcePresenter;
 import com.sonejka.news.mvp.view.adapter.SourceRecyclerAdapter;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
@@ -23,7 +27,7 @@ import butterknife.ButterKnife;
  * Created by Oleg Tarashkevich on 01.04.17.
  */
 
-public class SourcesFragment extends BaseFragment {
+public class SourcesFragment extends BaseFragment implements INewsView<Source, Source.Param> {
 
     @BindView(R.id.recycler_view) FastScrollRecyclerView recyclerView;
 
@@ -44,24 +48,43 @@ public class SourcesFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        sourcePresenter.setView(new SourceView());
-        sourcePresenter.loadData();
+        sourcePresenter.setView(this);
+//        onDataLoadEvent(Source.param());
+        onDataLoadEvent(Source.param(RequestParam.Category.BUSINESS, RequestParam.Language.EN, RequestParam.Country.US));
     }
 
-    private class SourceView implements INewsView<Source> {
-        @Override
-        public void onStartLoading() {
-
-        }
-
-        @Override
-        public void onFailure(String message) {
-
-        }
-
-        @Override
-        public void updateRecycleView(Source source) {
-           adapter.setData(source.getSources());
-        }
+    @Override
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+    }
+
+    // region INewsView
+    @Subscribe
+    @Override
+    public void onDataLoadEvent(Source.Param param) {
+        sourcePresenter.loadData(param);
+    }
+
+    @Override
+    public void onStartLoading() {
+
+    }
+
+    @Override
+    public void onFailure(String message) {
+
+    }
+
+    @Override
+    public void updateRecycleView(Source source) {
+        adapter.setData(source.getSources());
+    }
+    // endregion
 }

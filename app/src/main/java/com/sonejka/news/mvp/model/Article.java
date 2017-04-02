@@ -39,9 +39,17 @@ public class Article {
         @Getter @Setter private String source;
         @Getter @Setter private String sortBy;
 
-        public Param(String source, @RequestParam.SortBy String sortBy) {
+        private Param(String source, @RequestParam.SortBy String sortBy) {
             this.source = source;
             this.sortBy = sortBy;
         }
+    }
+
+    public static Param param(){
+      return param(null, null);
+    }
+
+    public static Param param(String source, @RequestParam.SortBy String sortBy){
+       return new Param(source, sortBy);
     }
 }

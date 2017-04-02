@@ -1,7 +1,6 @@
 package com.sonejka.news.mvp.presenter.news;
 
 import com.sonejka.news.mvp.model.Article;
-import com.sonejka.news.mvp.model.RequestParam;
 import com.sonejka.news.mvp.view.fragment.INewsView;
 import com.sonejka.news.network.ApiService;
 import com.sonejka.news.util.SubscriptionUtil;
@@ -15,10 +14,10 @@ import rx.Subscription;
  * Created by Oleg Tarashkevich on 31/03/2017.
  */
 
-public class ArticlePresenter implements INewsPresenter<INewsView<Article>> {
+public class ArticlePresenter implements INewsPresenter<INewsView<Article, Article.Param>, Article.Param> {
 
     private ApiService mApiService;
-    private INewsView<Article> mArticleView;
+    private INewsView<Article, Article.Param> mArticleView;
     private Subscription mSubscription;
 
     @Inject
@@ -27,15 +26,14 @@ public class ArticlePresenter implements INewsPresenter<INewsView<Article>> {
     }
 
     @Override
-    public void setView(INewsView<Article> articleView) {
+    public void setView(INewsView<Article, Article.Param> articleView) {
         mArticleView = articleView;
     }
 
     @Override
-    public void loadData() {
+    public void loadData(Article.Param param) {
         unSubscribe();
         mArticleView.onStartLoading();
-        Article.Param param = new Article.Param("the-next-web", RequestParam.SortBy.LATEST);
         mSubscription = SubscriptionUtil.bindObservable(mApiService.getArticles(param), articleObserver);
     }
 

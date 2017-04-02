@@ -41,10 +41,18 @@ public class Source {
         @Getter @Setter private String language;
         @Getter @Setter private String country;
 
-        public Param(@RequestParam.Category String category, @RequestParam.Language String language, @RequestParam.Country String country) {
+        private Param(@RequestParam.Category String category, @RequestParam.Language String language, @RequestParam.Country String country) {
             this.category = category;
             this.language = language;
             this.country = country;
         }
+    }
+
+    public static Param param(){
+        return param(null, null, null);
+    }
+
+    public static Param param(@RequestParam.Category String category, @RequestParam.Language String language, @RequestParam.Country String country){
+        return new Param(category, language, country);
     }
 }
