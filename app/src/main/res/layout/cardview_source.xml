@@ -30,7 +30,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/name_text_view"
+                android:id="@+id/source_name_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -38,7 +38,7 @@
                 tools:text="Name"/>
 
             <TextView
-                android:id="@+id/url_text_view"
+                android:id="@+id/source_url_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/l_size"
@@ -50,7 +50,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/description_text_view"
+            android:id="@+id/source_description_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/source_logo_view"

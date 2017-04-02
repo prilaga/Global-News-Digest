@@ -9,15 +9,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
+import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Article;
+import com.sonejka.news.mvp.view.widget.ArticleCardView;
 
 import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Oleg Tarashkevich on 01.04.17.
  */
 
-public class ArticleRecyclerAdapter  extends BaseRecyclerAdapter<Article, ArticleRecyclerAdapter.ArticleViewHolder>
+public class ArticleRecyclerAdapter
+        extends BaseRecyclerAdapter<Article.Entry, ArticleRecyclerAdapter.ArticleViewHolder>
         implements FastScrollRecyclerView.SectionedAdapter {
 
     @Inject
@@ -26,27 +32,26 @@ public class ArticleRecyclerAdapter  extends BaseRecyclerAdapter<Article, Articl
 
     @Override
     public ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ArticleViewHolder(LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false));
+        return new ArticleRecyclerAdapter.ArticleViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_article, parent, false));
     }
 
-    @SuppressLint("DefaultLocale")
     @Override
-    protected void onBindViewHolder(ArticleViewHolder holder, Article article, int position) {
-        holder.text.setText(String.format("Item %d", position));
+    protected void onBindViewHolder(ArticleViewHolder holder, Article.Entry entry, int position) {
+        holder.cardView.setSource(entry);
     }
 
     @NonNull
     @Override
     public String getSectionName(int position) {
-        return String.valueOf(position);
+        return getItem(position).getAuthor();
     }
 
     static class ArticleViewHolder extends RecyclerView.ViewHolder {
-        public TextView text;
+        @BindView(R.id.source_card_view) ArticleCardView cardView;
 
         public ArticleViewHolder(View itemView) {
             super(itemView);
-            text = (TextView) itemView.findViewById(android.R.id.text1);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

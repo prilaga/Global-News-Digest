@@ -1,5 +1,7 @@
 package com.sonejka.news.mvp.model;
 
+import com.sonejka.news.util.DateUtil;
+
 import java.util.Date;
 import java.util.List;
 
@@ -20,8 +22,17 @@ public class Article {
         @Getter private String author;
         @Getter private String title;
         @Getter private String description;
+        @Getter private String url;
         @Getter private String urlToImage;
         @Getter private Date publishedAt;
+
+        public String getInfo() {
+            return author + " | " + getPublishedDate();
+        }
+
+        public String getPublishedDate(){
+            return DateUtil.dateToString(DateUtil.DateFormat.DATE_FORMAT, publishedAt);
+        }
     }
 
     public static class Param {

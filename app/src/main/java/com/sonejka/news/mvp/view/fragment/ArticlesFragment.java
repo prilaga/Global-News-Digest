@@ -3,6 +3,7 @@ package com.sonejka.news.mvp.view.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ public class ArticlesFragment extends BaseFragment {
         ButterKnife.bind(this, rootView);
         getFragmentComponent().inject(this);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
         return rootView;
@@ -44,7 +45,7 @@ public class ArticlesFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         articlePresenter.setView(new ArticleView());
-//        articlePresenter.loadData();
+        articlePresenter.loadData();
     }
 
     private class ArticleView implements INewsView<Article> {
@@ -60,7 +61,7 @@ public class ArticlesFragment extends BaseFragment {
 
         @Override
         public void updateRecycleView(Article article) {
-
+            adapter.setData(article.getArticles());
         }
     }
 }

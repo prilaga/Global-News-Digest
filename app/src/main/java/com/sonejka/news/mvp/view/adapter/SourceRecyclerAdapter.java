@@ -41,7 +41,7 @@ public class SourceRecyclerAdapter
     @NonNull
     @Override
     public String getSectionName(int position) {
-        return String.valueOf(position);
+        return getItem(position).getName();
     }
 
     static class SourceViewHolder extends RecyclerView.ViewHolder {
