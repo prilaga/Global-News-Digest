@@ -2,6 +2,8 @@ package com.sonejka.news.mvp.model;
 
 import android.support.annotation.StringDef;
 
+import com.sonejka.news.util.TextUtil;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -11,28 +13,27 @@ import java.lang.annotation.RetentionPolicy;
 
 public class RequestParam {
 
-    @StringDef({SortBy.DEFAULT, SortBy.TOP, SortBy.LATEST, SortBy.POPULAR})
+    public static final String ALL = "all";
+
+    @StringDef({ALL, SortBy.TOP, SortBy.LATEST, SortBy.POPULAR})
     @Retention(RetentionPolicy.SOURCE)
     public @interface SortBy {
-        String DEFAULT = "default";
         String TOP = "top";
         String LATEST = "latest";
         String POPULAR = "popular";
     }
 
-    @StringDef({Language.DEFAULT, Language.EN, Language.DE, Language.GB})
+    @StringDef({ALL, Language.EN, Language.DE, Language.FR})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Language {
-        String DEFAULT = "default";
         String EN = "en";
         String DE = "de";
-        String GB = "fr";
+        String FR = "fr";
     }
 
-    @StringDef({Country.DEFAULT, Country.AU, Country.DE, Country.GB, Country.IN, Country.IT, Country.US})
+    @StringDef({ALL, Country.AU, Country.DE, Country.GB, Country.IN, Country.IT, Country.US})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Country {
-        String DEFAULT = "default";
         String AU = "au";
         String DE = "de";
         String GB = "gb";
@@ -41,8 +42,7 @@ public class RequestParam {
         String US = "us";
     }
 
-    @StringDef({
-            Category.DEFAULT,
+    @StringDef({ALL,
             Category.BUSINESS,
             Category.ENTERTAINMENT,
             Category.GAMING,
@@ -54,7 +54,6 @@ public class RequestParam {
             Category.TECHNOLOGY})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Category {
-        String DEFAULT = "default";
         String BUSINESS = "business";
         String ENTERTAINMENT = "entertainment";
         String GAMING = "gaming";
@@ -66,4 +65,29 @@ public class RequestParam {
         String TECHNOLOGY = "technology";
     }
 
+    public static @Category String[] getCategories() {
+        return new String[]{
+                ALL,
+                Category.BUSINESS,
+                Category.ENTERTAINMENT,
+                Category.GAMING,
+                Category.GENERAL,
+                Category.MUSIC,
+                Category.POLITICS,
+                Category.SCIENCE_AND_NATURE,
+                Category.SPORT,
+                Category.TECHNOLOGY};
+    }
+
+    public static @Language String[] getLanguages() {
+        return new String[]{ALL, Language.EN, Language.DE, Language.FR};
+    }
+
+    public static @Country String[] getCountries() {
+        return new String[]{ALL, Country.AU, Country.DE, Country.GB, Country.IN, Country.IT, Country.US};
+    }
+
+    public static String parameter(String parameter){
+        return TextUtil.isNotEmpty(parameter) && parameter.equalsIgnoreCase(RequestParam.ALL) ? null : parameter;
+    }
 }

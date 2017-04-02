@@ -4,4 +4,8 @@
     <string name="sources">Sources</string>
     <string name="articles">Articles</string>
 
+    <string name="categories">Categories</string>
+    <string name="language">Language</string>
+    <string name="country">Country</string>
+
 </resources>

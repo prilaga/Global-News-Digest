@@ -21,6 +21,14 @@
 
             <include layout="@layout/layout_toolbar"/>
 
+            <com.sonejka.news.mvp.view.widget.RequestCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/m_size"
+                android:layout_marginLeft="@dimen/m_size"
+                android:layout_marginRight="@dimen/m_size"
+                android:layout_marginStart="@dimen/m_size"/>
+
         </LinearLayout>
 
         <com.sonejka.news.mvp.view.widget.NewsTabLayout

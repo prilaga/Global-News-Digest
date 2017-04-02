@@ -1,5 +1,7 @@
 package com.sonejka.news.mvp.model;
 
+import com.sonejka.news.util.TextUtil;
+
 import java.util.List;
 
 import lombok.Getter;
@@ -42,9 +44,9 @@ public class Source {
         @Getter @Setter private String country;
 
         private Param(@RequestParam.Category String category, @RequestParam.Language String language, @RequestParam.Country String country) {
-            this.category = category;
-            this.language = language;
-            this.country = country;
+            this.category = RequestParam.parameter(category);
+            this.language = RequestParam.parameter(language);
+            this.country = RequestParam.parameter(country);
         }
     }
 

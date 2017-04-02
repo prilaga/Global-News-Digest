@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Article;
+import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.adapter.MainPagerAdapter;
 import com.sonejka.news.mvp.view.adapter.TabItem;
 import com.sonejka.news.mvp.view.widget.NewsTabLayout;
@@ -71,6 +72,11 @@ public class MainActivity extends BaseActivity implements NewsTabLayout.CustomTa
     @Subscribe
     public void onMoveToArticlesEvent(Article.Param param) {
         viewPager.setCurrentItem(TabItem.ARTICLES.ordinal(), true);
+    }
+
+    @Subscribe
+    public void onMoveToASourcesEvent(Source.Param param) {
+        viewPager.setCurrentItem(TabItem.SOURCES.ordinal(), true);
     }
 
     @Override

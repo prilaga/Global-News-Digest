@@ -40,8 +40,8 @@ public class Article {
         @Getter @Setter private String sortBy;
 
         private Param(String source, @RequestParam.SortBy String sortBy) {
-            this.source = source;
-            this.sortBy = sortBy;
+            this.source = RequestParam.parameter(source);
+            this.sortBy = RequestParam.parameter(sortBy);
         }
     }
 

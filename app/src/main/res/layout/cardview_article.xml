@@ -7,6 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector_ripple"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -14,9 +15,9 @@
             android:id="@+id/article_logo_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="fitStart"
-            android:adjustViewBounds="true"
             android:layout_marginBottom="@dimen/l_size"
+            android:adjustViewBounds="true"
+            android:scaleType="fitStart"
             tools:src="@mipmap/ic_launcher"/>
 
         <TextView
@@ -31,10 +32,10 @@
             android:id="@+id/article_title_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_marginTop="@dimen/l_size"
             android:gravity="center_vertical"
             android:textSize="@dimen/m_text_size"
+            android:textStyle="bold"
             tools:text="Name"/>
 
         <TextView
