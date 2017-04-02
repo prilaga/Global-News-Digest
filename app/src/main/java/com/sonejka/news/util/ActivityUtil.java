@@ -9,7 +9,7 @@ import android.view.View;
  * Created by Oleg Tarashkevich on 03.04.17.
  */
 
-public class ActivityUtil {
+public final class ActivityUtil {
 
     public static Activity getActivity(View view) {
         Context context = view.getContext();

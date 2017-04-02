@@ -22,6 +22,7 @@
             <include layout="@layout/layout_toolbar"/>
 
             <com.sonejka.news.mvp.view.widget.RequestCardView
+                android:id="@+id/request_card_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/m_size"

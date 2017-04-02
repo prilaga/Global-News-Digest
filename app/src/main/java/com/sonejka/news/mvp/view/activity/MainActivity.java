@@ -11,6 +11,7 @@ import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.adapter.MainPagerAdapter;
 import com.sonejka.news.mvp.view.adapter.TabItem;
 import com.sonejka.news.mvp.view.widget.NewsTabLayout;
+import com.sonejka.news.mvp.view.widget.RequestCardView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -36,6 +37,7 @@ public class MainActivity extends BaseActivity implements NewsTabLayout.CustomTa
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.news_tabs) NewsTabLayout tabLayout;
     @BindView(R.id.main_pager_container) ViewPager viewPager;
+    @BindView(R.id.request_card_view) RequestCardView requestCardView;
 
     @Inject MainPagerAdapter pagerAdapter;
 
@@ -55,17 +57,13 @@ public class MainActivity extends BaseActivity implements NewsTabLayout.CustomTa
 
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
         EventBus.getDefault().register(this);
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
 

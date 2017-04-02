@@ -49,8 +49,9 @@ public class ArticlesFragment extends BaseFragment implements INewsView<Article,
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         articlePresenter.setView(this);
+        // For testing
 //        onDataLoadEvent(Article.param());
-        onDataLoadEvent(Article.param("the-next-web", RequestParam.SortBy.LATEST));
+//        onDataLoadEvent(Article.param("the-next-web", RequestParam.SortBy.LATEST));
     }
 
     @Override

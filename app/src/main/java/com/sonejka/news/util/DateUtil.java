@@ -11,7 +11,7 @@ import java.util.Date;
  * Created by Oleg Tarashkevich on 02.04.17.
  */
 
-public class DateUtil {
+public final class DateUtil {
 
     @StringDef({DateFormat.DATE_FORMAT})
     @Retention(RetentionPolicy.SOURCE)

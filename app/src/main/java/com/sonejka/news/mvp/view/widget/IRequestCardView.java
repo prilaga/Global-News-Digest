@@ -6,7 +6,11 @@ package com.sonejka.news.mvp.view.widget;
 
 public interface IRequestCardView {
 
-    void populateViews(String[] categories, String[] languages, String[] countries);
+    void setCategory(String[] categories, String category);
+
+    void setLanguage(String[] languages, String language);
+
+    void setCountries(String[] countries, String country);
 
     String getCategory();
 

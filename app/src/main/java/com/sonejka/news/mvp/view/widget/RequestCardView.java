@@ -67,10 +67,18 @@ public class RequestCardView extends CardView implements IRequestCardView {
 
     // region IRequestCardView
     @Override
-    public void populateViews(String[] categories, String[] languages, String[] countries) {
-        setupFiled(categoryEditText, categories);
-        setupFiled(languageEditText, languages);
-        setupFiled(countryEditText, countries);
+    public void setCategory(String[] categories, String category) {
+        setupFiled(categoryEditText, categories, category);
+    }
+
+    @Override
+    public void setLanguage(String[] languages, String language) {
+        setupFiled(languageEditText, languages, language);
+    }
+
+    @Override
+    public void setCountries(String[] countries, String country) {
+        setupFiled(countryEditText, countries, country);
     }
 
     @Override
@@ -89,10 +97,10 @@ public class RequestCardView extends CardView implements IRequestCardView {
     }
     // endregion
 
-    private void setupFiled(final AppCompatAutoCompleteTextView editText, final String[] array) {
+    private void setupFiled(final AppCompatAutoCompleteTextView editText, final String[] array, String value) {
         RequestAdapter categoryAdapter = new RequestAdapter(array);
         editText.setAdapter(categoryAdapter);
-        editText.setText(array[0]);
+        editText.setText(value);
         editText.setInputType(InputType.TYPE_NULL);
 
         editText.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -100,7 +108,8 @@ public class RequestCardView extends CardView implements IRequestCardView {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = ((RequestAdapter) parent.getAdapter()).getItem(position);
                 editText.setText(item);
-                presenter.startRequestParam();
+                if (presenter != null)
+                    presenter.startRequestParam();
             }
         });
 
@@ -121,6 +130,7 @@ public class RequestCardView extends CardView implements IRequestCardView {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        presenter.unSubscribe();
+        if (presenter != null)
+            presenter.unSubscribe();
     }
 }

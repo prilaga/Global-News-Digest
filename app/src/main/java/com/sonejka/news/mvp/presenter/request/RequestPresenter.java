@@ -34,7 +34,14 @@ public class RequestPresenter implements IRequestPresenter{
     @Override
     public void setView(IRequestCardView view) {
         mView = view;
-        mView.populateViews(RequestParam.getCategories(), RequestParam.getLanguages(), RequestParam.getCountries());
+
+        String[] categories = RequestParam.getCategories();
+        String[] languages = RequestParam.getLanguages();
+        String[] countries = RequestParam.getCountries();
+
+        mView.setCategory(categories, categories[0]);
+        mView.setLanguage(languages, languages[0]);
+        mView.setCountries(countries, countries[0]);
 
         unSubscribe();
         mSubscription = mPublishSubject
@@ -42,6 +49,8 @@ public class RequestPresenter implements IRequestPresenter{
                 .debounce(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .onBackpressureLatest()
                 .subscribe(requestObserver);
+
+        startRequestParam();
     }
 
     @Override
