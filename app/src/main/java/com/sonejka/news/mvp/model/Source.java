@@ -37,6 +37,7 @@ public class Source {
     }
 
     public static class Param {
+        public static final String TAG = "Source.Param";
         @Getter @Setter private String category;
         @Getter @Setter private String language;
         @Getter @Setter private String country;
@@ -48,11 +49,19 @@ public class Source {
         }
     }
 
-    public static Param param(){
+    public static Param emptyParam(){
         return param(null, null, null);
+    }
+
+    public static Param defaultParam(){
+        return param(RequestParam.ALL, RequestParam.ALL, RequestParam.ALL);
     }
 
     public static Param param(@RequestParam.Category String category, @RequestParam.Language String language, @RequestParam.Country String country){
         return new Param(category, language, country);
+    }
+
+    public static void saveParam(Param param){
+
     }
 }

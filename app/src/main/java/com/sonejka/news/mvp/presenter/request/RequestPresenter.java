@@ -4,6 +4,8 @@ import com.sonejka.news.di.annotation.ForActivity;
 import com.sonejka.news.mvp.model.RequestParam;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.widget.IRequestCardView;
+import com.sonejka.news.util.DataUtil;
+import com.sonejka.news.util.SubscriptionUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -11,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -21,7 +24,9 @@ import rx.subjects.PublishSubject;
  */
 
 @ForActivity
-public class RequestPresenter implements IRequestPresenter{
+public class RequestPresenter implements IRequestPresenter {
+
+    @Inject DataUtil mDataUtil;
 
     private PublishSubject<Void> mPublishSubject = PublishSubject.create();
     private Subscription mSubscription;
@@ -35,22 +40,14 @@ public class RequestPresenter implements IRequestPresenter{
     public void setView(IRequestCardView view) {
         mView = view;
 
-        String[] categories = RequestParam.getCategories();
-        String[] languages = RequestParam.getLanguages();
-        String[] countries = RequestParam.getCountries();
-
-        mView.setCategory(categories, categories[0]);
-        mView.setLanguage(languages, languages[0]);
-        mView.setCountries(countries, countries[0]);
-
         unSubscribe();
         mSubscription = mPublishSubject
                 .asObservable()
-                .debounce(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .onBackpressureLatest()
                 .subscribe(requestObserver);
 
-        startRequestParam();
+        loadParamData();
     }
 
     @Override
@@ -64,6 +61,7 @@ public class RequestPresenter implements IRequestPresenter{
         @RequestParam.Language String language = mView.getLanguage();
         @RequestParam.Country String country = mView.getCountry();
         Source.Param param = Source.param(category, language, country);
+        saveParamData(param);
         EventBus.getDefault().post(param);
     }
 
@@ -73,12 +71,48 @@ public class RequestPresenter implements IRequestPresenter{
             mSubscription.unsubscribe();
     }
 
-    private void loadParamData(){
-
+    // region Load Source.Param
+    private void loadParamData() {
+        Observable<Source.Param> observable = mDataUtil.loadAsync(Source.Param.class, Source.Param.TAG);
+        SubscriptionUtil.bindObservable(observable, paramObserver);
     }
 
-    private void saveParamData(){
+    private Observer<Source.Param> paramObserver = new Observer<Source.Param>() {
+        @Override
+        public void onCompleted() {
 
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+
+        @Override
+        public void onNext(Source.Param param) {
+            loadParam(param);
+        }
+    };
+
+    private void loadParam(Source.Param param) {
+        if (param == null)
+            param = Source.defaultParam();
+
+        String[] categories = RequestParam.getCategories();
+        String[] languages = RequestParam.getLanguages();
+        String[] countries = RequestParam.getCountries();
+
+        mView.setCategory(categories, RequestParam.defaultParam(param.getCategory()));
+        mView.setLanguage(languages, RequestParam.defaultParam(param.getLanguage()));
+        mView.setCountries(countries, RequestParam.defaultParam(param.getCountry()));
+
+        EventBus.getDefault().post(param);
+    }
+    // endregion
+
+    private void saveParamData(Source.Param param) {
+        if (param != null)
+            mDataUtil.save(param, Source.Param.TAG);
     }
 
     private Observer<Void> requestObserver = new Observer<Void>() {
@@ -97,4 +131,6 @@ public class RequestPresenter implements IRequestPresenter{
             postRequestParam();
         }
     };
+
+
 }

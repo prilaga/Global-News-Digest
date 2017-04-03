@@ -90,4 +90,8 @@ public class RequestParam {
     public static String parameter(String parameter){
         return TextUtil.isNotEmpty(parameter) && parameter.equalsIgnoreCase(RequestParam.ALL) ? null : parameter;
     }
+
+    public static String defaultParam(String parameter){
+        return TextUtil.isEmpty(parameter) ? RequestParam.ALL : parameter;
+    }
 }

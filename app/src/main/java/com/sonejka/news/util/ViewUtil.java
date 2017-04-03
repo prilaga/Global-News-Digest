@@ -8,7 +8,7 @@ import android.view.inputmethod.InputMethodManager;
  * Created by Oleg Tarashkevich on 02.04.17.
  */
 
-public class ViewUtil {
+public final class ViewUtil {
 
     public static void showKeyboard(View view) {
         InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
