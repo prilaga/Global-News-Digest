@@ -38,19 +38,24 @@ public class NetworkModule {
 
         NetworkService service = null;
 
-//        Converter.Factory factory = GsonConverterFactory.create(gson);
-//
-//        Retrofit.Builder builder = new Retrofit.Builder()
-//                .baseUrl(API.PRODUCTION.getBaseUrl())
-//                .addConverterFactory(factory)
-//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-//                .client(httpClient);
-//
-//        Retrofit retrofit = builder.build();
-//        service = retrofit.create(NetworkService.class);
+        API api = dataUtil.load(API.class, API.TAG);
+        if (api == null)
+            api = API.PRODUCTION;
 
-        service = new MockNetworkService(dataUtil);
+        if (api.isMock()) {
+            service = new MockNetworkService(dataUtil);
+        } else {
+            Converter.Factory factory = GsonConverterFactory.create(gson);
 
+            Retrofit.Builder builder = new Retrofit.Builder()
+                    .baseUrl(API.PRODUCTION.getBaseUrl())
+                    .addConverterFactory(factory)
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                    .client(httpClient);
+
+            Retrofit retrofit = builder.build();
+            service = retrofit.create(NetworkService.class);
+        }
         return service;
     }
 

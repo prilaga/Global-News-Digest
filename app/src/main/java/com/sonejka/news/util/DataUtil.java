@@ -4,13 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.RawRes;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.sonejka.news.di.annotation.ForApplication;
-import com.sonejka.news.di.module.GsonModule;
-
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,8 +13,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.io.Writer;
-
-import javax.inject.Named;
 
 import lombok.Getter;
 import lombok.experimental.Accessors;
@@ -35,8 +27,8 @@ import rx.functions.Func1;
 @Accessors(prefix = "m")
 public final class DataUtil {
 
-    @Getter private Context mContext;
-    private TinyDB mTinyDB;
+    private Context mContext;
+    @Getter private TinyDB mTinyDB;
     private Gson mGson;
 
     public DataUtil(Context context, Gson gson) {

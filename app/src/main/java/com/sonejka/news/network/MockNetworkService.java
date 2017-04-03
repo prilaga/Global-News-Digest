@@ -8,7 +8,6 @@ import com.sonejka.news.util.DataUtil;
 import java.util.Map;
 
 import retrofit2.http.QueryMap;
-import retrofit2.mock.BehaviorDelegate;
 import rx.Observable;
 
 /**

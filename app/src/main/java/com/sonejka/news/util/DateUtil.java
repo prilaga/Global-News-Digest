@@ -17,7 +17,6 @@ public final class DateUtil {
     @Retention(RetentionPolicy.SOURCE)
     public @interface DateFormat {
         String DATE_FORMAT = "MMMM dd yyy, hh:mm:ss";
-
     }
 
     public static String dateToString(@DateFormat String format, Date date) {

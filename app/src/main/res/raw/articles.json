@@ -1,63 +1,47 @@
 {
   "status": "ok",
-  "source": "hacker-news",
-  "sortBy": "top",
+  "source": "the-next-web",
+  "sortBy": "latest",
   "articles": [
     {
-      "author": "Christopher Mele and Sandra E. Garcia",
-      "title": "Mexican Newspaper Shuts Down, Saying It Is Too Dangerous to Continue",
-      "description": "The newspaper, Norte, said that the three killings of reporters in March showed that journalism had become a high-risk profession.",
-      "url": "https://www.nytimes.com/2017/04/03/world/americas/el-norte-closes-mexican-newspaper.html",
-      "urlToImage": "https://static01.nyt.com/images/2017/04/04/business/04xp-newspaper2/04xp-newspaper2-facebookJumbo.jpg",
-      "publishedAt": "2017-04-03T19:12:15Z"
+      "author": "Bryan Clark",
+      "title": "A British inventor created his own Iron Man-like flight suit (and we want it)",
+      "description": "We all want to be Iron Man. Zipping through clouds using jet propulsion and an exoskeleton made of a hardened nickel-titanium alloy seems futuristic, but not outside the realm of possibility. Tony Stark did it, after all, but fictional billionaires-turned-genius-inventors don’t get us any closer to the goal of human flight. Entrepreneur and inventor Richard Browning isn’t Tony Stark, …",
+      "url": "https://thenextweb.com/insider/2017/04/04/a-british-inventor-created-his-own-iron-man-like-flight-suit/",
+      "urlToImage": "https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2017/04/ezgif.com-optimize-6.gif",
+      "publishedAt": "2017-04-03T22:19:38Z"
     },
     {
-      "author": "David Welch,Dana Hull",
-      "title": "Musk Trolls Shorts as Tesla's Value Hits Record, Passes Ford",
-      "description": "Tesla Inc.’s Elon Musk poked fun at short sellers as his electric-car maker’s stock surged to a record, vaulting its market value past century-old rival Ford Motor Co.",
-      "url": "https://www.bloomberg.com/news/articles/2017-04-03/tesla-passes-ford-by-market-value-before-musk-delivers-model-3",
-      "urlToImage": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/idPMwC_HCUuY/v0/1200x675.jpg",
-      "publishedAt": "2017-04-03T14:36:00.938Z"
+      "author": "Bryan Clark",
+      "title": "Verizon plans to rebrand AOL and Yahoo as 'Oath'",
+      "description": "After Verizon officially acquires Yahoo, the newly created content division will get a new name: ‘Oath.’ It might not be the worst name ever (Tronc still exists) but it’s damn sure trying to be. “We're hunting for awesome startups” Run an early-stage company? We're inviting 250 to exhibit at TNW Conference and pitch on stage! CHECK …",
+      "url": "https://thenextweb.com/business/2017/04/03/verizon-plans-rebrand-aol-yahoo-oath/",
+      "urlToImage": "https://cdn2.tnwcdn.com/wp-content/blogs.dir/1/files/2017/04/oath-verizon-yahoo-aol.jpg",
+      "publishedAt": "2017-04-03T21:01:55Z"
     },
     {
-      "author": "https://www.facebook.com/bbcnews",
-      "title": "Graphene-based sieve turns seawater into drinking water - BBC News",
-      "description": "The development could help provide clean drinking water for millions of people who lack access to safe sources.",
-      "url": "http://www.bbc.com/news/science-environment-39482342",
-      "urlToImage": "https://ichef.bbci.co.uk/news/1024/cpsprodpb/AF4A/production/_95447844_v9.jpg",
-      "publishedAt": "2017-04-03T17:05:08Z"
+      "author": "Rachel Kaser",
+      "title": "Amazon Cash eliminates need for bank cards",
+      "description": "Amazon just made it easier for cash-only customers to use its marketplace. With Amazon Cash, you can add money directly into your account, no bank accounts or cards necessary. With Cash, a cashier at a participating store will scan your barcode, which you either print out or have on your phone. You pay the amount in-store, and …",
+      "url": "https://thenextweb.com/money/2017/04/03/amazon-cash-eliminates-need-bank-cards/",
+      "urlToImage": "https://cdn3.tnwcdn.com/wp-content/blogs.dir/1/files/2017/04/Amazon-Cash.jpg",
+      "publishedAt": "2017-04-03T20:19:37Z"
     },
     {
-      "author": "Jon Russell",
-      "title": "Report: Android overtakes Windows as the internet’s most used operating system",
-      "description": "Mobile is today as important, if not more important, than desktops when it comes to the internet and apps. A clear reminder of that comes with news of a..",
-      "url": "https://techcrunch.com/2017/04/03/statcounter-android-windows/",
-      "urlToImage": "https://tctechcrunch2011.files.wordpress.com/2017/04/google-android.jpg?w=764&h=400&crop=1",
-      "publishedAt": "2017-04-03T04:34:46Z"
+      "author": "Napier Lopez",
+      "title": "Every smartphone should include a one-handed mode",
+      "description": "Here’s a common consumer conundrum: I like smartphones with big screens, but I also want to be able to use them with one hand. Whichever quality you might prefer, the industry has certainly prioritized larger displays. When the original Samsung Galaxy Note was unveiled in 2011, it was considered almost comically huge. Fast-forward to 2017, …",
+      "url": "https://thenextweb.com/mobile/2017/04/03/every-smartphone-phone-come-one-handed-mode/",
+      "urlToImage": "https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2017/03/Samsung-Galaxy-S8-S8-14-of-17.jpg",
+      "publishedAt": "2017-04-03T20:33:09Z"
     },
     {
-      "author": null,
-      "title": "Ask HN: Who is hiring? (April 2017)",
-      "description": null,
-      "url": "https://news.ycombinator.com/item?id=14023198",
-      "urlToImage": null,
-      "publishedAt": null
-    },
-    {
-      "author": "Kate Conger",
-      "title": "Google claims Levandowski launched competing projects long before Otto",
-      "description": "Newly-released documents from Google's October arbitration against Anthony Levandowski, one of the leads of its self-driving car project who abruptly left to..",
-      "url": "https://techcrunch.com/2017/04/03/google-claims-levandowski-launched-competing-projects-long-before-otto/",
-      "urlToImage": "https://tctechcrunch2011.files.wordpress.com/2016/10/ottotruck_ta-1024x7681.jpg?w=640&h=400&crop=1",
-      "publishedAt": "2017-04-03T13:37:09Z"
-    },
-    {
-      "author": null,
-      "title": "Interesting data structures: the BK-tree",
-      "description": null,
-      "url": "http://signal-to-noise.xyz/post/bk-tree/",
-      "urlToImage": null,
-      "publishedAt": "2017-04-03T00:00:00Z"
+      "author": "Bryan Clark",
+      "title": "Madman skips the controller to play Dark Souls 3 with bananas",
+      "description": "Playing Dark Souls 3 is hard. Playing Dark Souls 3 with 10 bananas instead of a controller is, well, bananas. Twitch streamer TheSuperScrubs has foregone sanity entirely and attempted to play one of the most difficult games known to man with a custom-made banana controller — or banana array, as it were. Ever been to …",
+      "url": "https://thenextweb.com/creativity/2017/04/03/madman-skips-the-controller-to-play-dark-souls-3-with-bananas/",
+      "urlToImage": "https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2017/04/ezgif.com-optimize-5.gif",
+      "publishedAt": "2017-04-03T19:17:34Z"
     }
   ]
 }

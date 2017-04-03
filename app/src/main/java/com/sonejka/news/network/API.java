@@ -16,6 +16,9 @@ public enum API {
     PRODUCTION("https://newsapi.org"),
     MOCK("https://mock.com");
 
+    public static final String API_KEY = "4c96c741e1444309ad86faafd9774f87";
+    public static final String TAG = "API";
+
     @Getter private String baseUrl;
 
     API(String baseUrl) {
@@ -36,7 +39,5 @@ public enum API {
         String LANGUAGE = "language";
         String COUNTRY = "country";
     }
-
-    public static final String API_KEY = "4c96c741e1444309ad86faafd9774f87";
 
 }
