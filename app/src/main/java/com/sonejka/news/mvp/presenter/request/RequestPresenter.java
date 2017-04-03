@@ -46,8 +46,6 @@ public class RequestPresenter implements IRequestPresenter {
                 .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .onBackpressureLatest()
                 .subscribe(requestObserver);
-
-        loadParamData();
     }
 
     @Override
@@ -72,7 +70,8 @@ public class RequestPresenter implements IRequestPresenter {
     }
 
     // region Load Source.Param
-    private void loadParamData() {
+    @Override
+    public void loadRequestParam() {
         Observable<Source.Param> observable = mDataUtil.loadAsync(Source.Param.class, Source.Param.TAG);
         SubscriptionUtil.bindObservable(observable, paramObserver);
     }

@@ -128,6 +128,13 @@ public class RequestCardView extends CardView implements IRequestCardView {
     }
 
     @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (presenter != null)
+            presenter.loadRequestParam();
+    }
+
+    @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         if (presenter != null)

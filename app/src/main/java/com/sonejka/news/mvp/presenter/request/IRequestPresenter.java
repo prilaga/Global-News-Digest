@@ -10,6 +10,8 @@ public interface IRequestPresenter {
 
     void setView(IRequestCardView view);
 
+    void loadRequestParam();
+
     void startRequestParam();
 
     void postRequestParam();
