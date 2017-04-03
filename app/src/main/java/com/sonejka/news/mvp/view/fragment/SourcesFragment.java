@@ -70,6 +70,7 @@ public class SourcesFragment extends BaseFragment implements INewsView<Source, S
     @Subscribe
     @Override
     public void onDataLoadEvent(Source.Param param) {
+        adapter.clear();
         sourcePresenter.loadData(param);
     }
 

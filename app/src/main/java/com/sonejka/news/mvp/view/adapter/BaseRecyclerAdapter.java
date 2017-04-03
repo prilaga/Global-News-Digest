@@ -20,6 +20,10 @@ public abstract class BaseRecyclerAdapter<D, T extends RecyclerView.ViewHolder> 
         notifyDataSetChanged();
     }
 
+    public void clear(){
+        setData(null);
+    }
+
     public D getItem(int position) {
         return ListUtil.getItem(mData, position);
     }

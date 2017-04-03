@@ -4,14 +4,14 @@ apply plugin: 'com.neenbedankt.android-apt'
 android {
 
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "25.0.2"
 
     def versionMajor = 1
     def versionMinor = 0
     def versionBuild = 2
 
     defaultConfig {
-        applicationId "com.mvp.mobexs.mvp_test"
+        applicationId "com.sonejka.news"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode versionBuild
