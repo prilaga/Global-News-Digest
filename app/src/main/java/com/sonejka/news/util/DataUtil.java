@@ -4,9 +4,13 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.RawRes;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sonejka.news.di.annotation.ForApplication;
 import com.sonejka.news.di.module.GsonModule;
+
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,19 +22,25 @@ import java.io.Writer;
 
 import javax.inject.Named;
 
+import lombok.Getter;
+import lombok.experimental.Accessors;
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Func1;
 
 /**
  * Created by Oleg Tarashkevich on 03/04/2017.
  */
 
+@Accessors(prefix = "m")
 public final class DataUtil {
 
+    @Getter private Context mContext;
     private TinyDB mTinyDB;
     private Gson mGson;
 
     public DataUtil(Context context, Gson gson) {
+        mContext = context;
         mTinyDB = new TinyDB(context);
         mGson = gson;
     }
@@ -39,11 +49,13 @@ public final class DataUtil {
      * Serialize & Deserialize
      */
 
+    @NonNull
     public String serialize(Object object) {
         String json = mGson.toJson(object);
         return json;
     }
 
+    @NonNull
     public <L> L deserialize(String json, Class<L> tClass) {
         L object = mGson.fromJson(json, tClass);
         return object;
@@ -53,18 +65,21 @@ public final class DataUtil {
      * Save & Load object
      */
 
+    @NonNull
     public void save(Object object, String key) {
         String json = serialize(object);
         mTinyDB.putString(key, json);
     }
 
+    @NonNull
     public <L> L load(Class<L> tClass, String key) {
         String json = mTinyDB.getString(key, "");
         L object = deserialize(json, tClass);
         return object;
     }
 
-    public <L> Observable<L> loadAsync(final Class<L> tClass, final String key) {
+    @NonNull
+    public <L> Observable<L> objectLoadObservable(final Class<L> tClass, final String key) {
         return Observable.create(new Observable.OnSubscribe<L>() {
             @Override
             public void call(Subscriber<? super L> subscriber) {
@@ -81,8 +96,21 @@ public final class DataUtil {
         });
     }
 
+    /**
+     * Load data from raw resources. Useful from mock testing.
+     */
     @NonNull
-    private Observable<String> readStringFromResObservable(final Context context, @RawRes final int rawId) {
+    public <T> Observable<T> getResponseFromResObservable(final Class<T> clazz, @RawRes int rawId) {
+        return getRawStringObservable(rawId).map(new Func1<String, T>() {
+            @Override
+            public T call(String s) {
+                return deserialize(s, clazz);
+            }
+        });
+    }
+
+    @NonNull
+    private Observable<String> getRawStringObservable(@RawRes final int rawId) {
         return Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
@@ -99,7 +127,7 @@ public final class DataUtil {
             }
 
             private String readJsonFromRes() throws IOException {
-                InputStream is = context.getResources().openRawResource(rawId);
+                InputStream is = mContext.getResources().openRawResource(rawId);
                 Writer writer = new StringWriter();
                 char[] buffer = new char[1024];
                 try {

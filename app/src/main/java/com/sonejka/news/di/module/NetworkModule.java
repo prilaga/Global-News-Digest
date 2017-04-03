@@ -7,14 +7,15 @@ import com.google.gson.Gson;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.sonejka.news.di.annotation.ForApplication;
 import com.sonejka.news.network.API;
+import com.sonejka.news.network.MockNetworkService;
 import com.sonejka.news.network.NetworkService;
+import com.sonejka.news.util.DataUtil;
 import com.sonejka.news.util.Logger;
 import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.Executors;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -33,19 +34,24 @@ public class NetworkModule {
 
     @Provides
     @ForApplication
-    NetworkService provideNetworkService(@Named(GsonModule.IDENTITY) Gson gson, @Named(OkHttpClientModule.API_CLIENT) OkHttpClient httpClient) {
+    NetworkService provideNetworkService(@Named(GsonModule.IDENTITY) Gson gson, @Named(OkHttpClientModule.API_CLIENT) OkHttpClient httpClient, DataUtil dataUtil) {
 
-        Converter.Factory factory = GsonConverterFactory.create(gson);
+        NetworkService service = null;
 
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(API.BASE_URL)
-                .addConverterFactory(factory)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(httpClient);
+//        Converter.Factory factory = GsonConverterFactory.create(gson);
+//
+//        Retrofit.Builder builder = new Retrofit.Builder()
+//                .baseUrl(API.PRODUCTION.getBaseUrl())
+//                .addConverterFactory(factory)
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .client(httpClient);
+//
+//        Retrofit retrofit = builder.build();
+//        service = retrofit.create(NetworkService.class);
 
-        Retrofit retrofit = builder.build();
+        service = new MockNetworkService(dataUtil);
 
-        return retrofit.create(NetworkService.class);
+        return service;
     }
 
     @Provides

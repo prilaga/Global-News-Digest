@@ -49,6 +49,7 @@ ext {
             butterKnifeCompiler: "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
 
             retrofit           : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitMock       : "com.squareup.retrofit2:retrofit-mock:${retrofitVersion}",
             converterGson      : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
             retrofitRxJava     : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
             okHttp3            : "com.squareup.okhttp3:okhttp:${okHttp3Version}",

@@ -21,9 +21,10 @@ public final class DateUtil {
     }
 
     public static String dateToString(@DateFormat String format, Date date) {
-        String text = null;
+        String text = "";
         try {
-            text = android.text.format.DateFormat.format(format, date).toString();
+            if (date != null)
+                text = android.text.format.DateFormat.format(format, date).toString();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }

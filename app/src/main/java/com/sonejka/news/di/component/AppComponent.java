@@ -18,9 +18,9 @@ import dagger.Component;
 @Component(modules = {
         AppModule.class,
         GsonModule.class,
+        DataModule.class,
         OkHttpClientModule.class,
-        NetworkModule.class,
-        DataModule.class})
+        NetworkModule.class})
 public interface AppComponent {
 
     ActivityComponent plus(ActivityModule module);

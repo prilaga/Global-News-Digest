@@ -1,0 +1,63 @@
+{
+  "status": "ok",
+  "source": "hacker-news",
+  "sortBy": "top",
+  "articles": [
+    {
+      "author": "Christopher Mele and Sandra E. Garcia",
+      "title": "Mexican Newspaper Shuts Down, Saying It Is Too Dangerous to Continue",
+      "description": "The newspaper, Norte, said that the three killings of reporters in March showed that journalism had become a high-risk profession.",
+      "url": "https://www.nytimes.com/2017/04/03/world/americas/el-norte-closes-mexican-newspaper.html",
+      "urlToImage": "https://static01.nyt.com/images/2017/04/04/business/04xp-newspaper2/04xp-newspaper2-facebookJumbo.jpg",
+      "publishedAt": "2017-04-03T19:12:15Z"
+    },
+    {
+      "author": "David Welch,Dana Hull",
+      "title": "Musk Trolls Shorts as Tesla's Value Hits Record, Passes Ford",
+      "description": "Tesla Inc.’s Elon Musk poked fun at short sellers as his electric-car maker’s stock surged to a record, vaulting its market value past century-old rival Ford Motor Co.",
+      "url": "https://www.bloomberg.com/news/articles/2017-04-03/tesla-passes-ford-by-market-value-before-musk-delivers-model-3",
+      "urlToImage": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/idPMwC_HCUuY/v0/1200x675.jpg",
+      "publishedAt": "2017-04-03T14:36:00.938Z"
+    },
+    {
+      "author": "https://www.facebook.com/bbcnews",
+      "title": "Graphene-based sieve turns seawater into drinking water - BBC News",
+      "description": "The development could help provide clean drinking water for millions of people who lack access to safe sources.",
+      "url": "http://www.bbc.com/news/science-environment-39482342",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/cpsprodpb/AF4A/production/_95447844_v9.jpg",
+      "publishedAt": "2017-04-03T17:05:08Z"
+    },
+    {
+      "author": "Jon Russell",
+      "title": "Report: Android overtakes Windows as the internet’s most used operating system",
+      "description": "Mobile is today as important, if not more important, than desktops when it comes to the internet and apps. A clear reminder of that comes with news of a..",
+      "url": "https://techcrunch.com/2017/04/03/statcounter-android-windows/",
+      "urlToImage": "https://tctechcrunch2011.files.wordpress.com/2017/04/google-android.jpg?w=764&h=400&crop=1",
+      "publishedAt": "2017-04-03T04:34:46Z"
+    },
+    {
+      "author": null,
+      "title": "Ask HN: Who is hiring? (April 2017)",
+      "description": null,
+      "url": "https://news.ycombinator.com/item?id=14023198",
+      "urlToImage": null,
+      "publishedAt": null
+    },
+    {
+      "author": "Kate Conger",
+      "title": "Google claims Levandowski launched competing projects long before Otto",
+      "description": "Newly-released documents from Google's October arbitration against Anthony Levandowski, one of the leads of its self-driving car project who abruptly left to..",
+      "url": "https://techcrunch.com/2017/04/03/google-claims-levandowski-launched-competing-projects-long-before-otto/",
+      "urlToImage": "https://tctechcrunch2011.files.wordpress.com/2016/10/ottotruck_ta-1024x7681.jpg?w=640&h=400&crop=1",
+      "publishedAt": "2017-04-03T13:37:09Z"
+    },
+    {
+      "author": null,
+      "title": "Interesting data structures: the BK-tree",
+      "description": null,
+      "url": "http://signal-to-noise.xyz/post/bk-tree/",
+      "urlToImage": null,
+      "publishedAt": "2017-04-03T00:00:00Z"
+    }
+  ]
+}

@@ -72,7 +72,7 @@ public class RequestPresenter implements IRequestPresenter {
     // region Load Source.Param
     @Override
     public void loadRequestParam() {
-        Observable<Source.Param> observable = mDataUtil.loadAsync(Source.Param.class, Source.Param.TAG);
+        Observable<Source.Param> observable = mDataUtil.objectLoadObservable(Source.Param.class, Source.Param.TAG);
         SubscriptionUtil.bindObservable(observable, paramObserver);
     }
 
