@@ -1,10 +1,20 @@
 package com.sonejka.news.util;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.RawRes;
 
 import com.google.gson.Gson;
 import com.sonejka.news.di.annotation.ForApplication;
 import com.sonejka.news.di.module.GsonModule;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import javax.inject.Named;
 
@@ -67,6 +77,42 @@ public final class DataUtil {
                 } catch (Throwable e) {
                     subscriber.onError(e);
                 }
+            }
+        });
+    }
+
+    @NonNull
+    private Observable<String> readStringFromResObservable(final Context context, @RawRes final int rawId) {
+        return Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                if (subscriber.isUnsubscribed()) return;
+
+                try {
+                    String jsonString = readJsonFromRes();
+                    subscriber.onNext(jsonString);
+                    subscriber.onCompleted();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    subscriber.onError(e);
+                }
+            }
+
+            private String readJsonFromRes() throws IOException {
+                InputStream is = context.getResources().openRawResource(rawId);
+                Writer writer = new StringWriter();
+                char[] buffer = new char[1024];
+                try {
+                    Reader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                    int n;
+                    while ((n = reader.read(buffer)) != -1) {
+                        writer.write(buffer, 0, n);
+                    }
+                } finally {
+                    is.close();
+                }
+
+                return writer.toString();
             }
         });
     }
