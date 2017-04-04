@@ -26,6 +26,7 @@ import rx.subjects.PublishSubject;
 @ForActivity
 public class RequestPresenter implements IRequestPresenter {
 
+    private final int DELAY = 0;
     @Inject DataUtil mDataUtil;
 
     private PublishSubject<Void> mPublishSubject = PublishSubject.create();
@@ -43,7 +44,7 @@ public class RequestPresenter implements IRequestPresenter {
         unSubscribe();
         mSubscription = mPublishSubject
                 .asObservable()
-                .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .debounce(DELAY, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .onBackpressureLatest()
                 .subscribe(requestObserver);
     }
@@ -72,7 +73,7 @@ public class RequestPresenter implements IRequestPresenter {
     // region Load Source.Param
     @Override
     public void loadRequestParam() {
-        Observable<Source.Param> observable = mDataUtil.objectLoadObservable(Source.Param.class, Source.Param.TAG);
+        Observable<Source.Param> observable = mDataUtil.objectLoadObservable(Source.Param.class, Source.Param.TAG, Source.defaultParam());
         SubscriptionUtil.bindObservable(observable, paramObserver);
     }
 
@@ -94,8 +95,6 @@ public class RequestPresenter implements IRequestPresenter {
     };
 
     private void loadParam(Source.Param param) {
-        if (param == null)
-            param = Source.defaultParam();
 
         String[] categories = RequestParam.getCategories();
         String[] languages = RequestParam.getLanguages();

@@ -71,13 +71,24 @@ public final class DataUtil {
     }
 
     @NonNull
-    public <L> Observable<L> objectLoadObservable(final Class<L> tClass, final String key) {
+    public <L> L load(Class<L> tClass, String key, L defaultObject) {
+        String json = mTinyDB.getString(key, "");
+        L object = deserialize(json, tClass);
+        if (object == null)
+            object = defaultObject;
+        return object;
+    }
+
+    @NonNull
+    public <L> Observable<L> objectLoadObservable(final Class<L> tClass, final String key, final L defaultObject) {
         return Observable.create(new Observable.OnSubscribe<L>() {
             @Override
             public void call(Subscriber<? super L> subscriber) {
                 try {
                     if (!subscriber.isUnsubscribed()) {
                         L object = load(tClass, key);
+                        if (object == null)
+                            object = defaultObject;
                         subscriber.onNext(object);
                         subscriber.onCompleted();
                     }

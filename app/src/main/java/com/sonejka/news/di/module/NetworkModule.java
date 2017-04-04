@@ -13,6 +13,8 @@ import com.sonejka.news.util.DataUtil;
 import com.sonejka.news.util.Logger;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Executors;
 
 import javax.inject.Named;
@@ -32,29 +34,31 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
 
+    private Map<API, NetworkService> mNetworkServices = new HashMap<>(API.values().length);
+
     @Provides
-    @ForApplication
     NetworkService provideNetworkService(@Named(GsonModule.IDENTITY) Gson gson, @Named(OkHttpClientModule.API_CLIENT) OkHttpClient httpClient, DataUtil dataUtil) {
 
-        NetworkService service = null;
+        API api = dataUtil.load(API.class, API.TAG, API.PRODUCTION);
+        NetworkService service = mNetworkServices.get(api);
 
-        API api = dataUtil.load(API.class, API.TAG);
-        if (api == null)
-            api = API.PRODUCTION;
+        if (service == null) {
 
-        if (api.isMock()) {
-            service = new MockNetworkService(dataUtil);
-        } else {
-            Converter.Factory factory = GsonConverterFactory.create(gson);
+            if (api.isMock())
+                service = new MockNetworkService(dataUtil);
+            else {
+                Converter.Factory factory = GsonConverterFactory.create(gson);
 
-            Retrofit.Builder builder = new Retrofit.Builder()
-                    .baseUrl(API.PRODUCTION.getBaseUrl())
-                    .addConverterFactory(factory)
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .client(httpClient);
+                Retrofit.Builder builder = new Retrofit.Builder()
+                        .baseUrl(API.PRODUCTION.getBaseUrl())
+                        .addConverterFactory(factory)
+                        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                        .client(httpClient);
 
-            Retrofit retrofit = builder.build();
-            service = retrofit.create(NetworkService.class);
+                Retrofit retrofit = builder.build();
+                service = retrofit.create(NetworkService.class);
+            }
+            mNetworkServices.put(api, service);
         }
         return service;
     }
