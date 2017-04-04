@@ -33,7 +33,7 @@ public class RxErrorHandlingCallAdapterFactory extends CallAdapter.Factory {
         return new RxCallAdapterWrapper(retrofit, original.get(returnType, annotations, retrofit));
     }
 
-    private static class RxCallAdapterWrapper implements CallAdapter<Observable<?>> {
+    private static class RxCallAdapterWrapper implements CallAdapter {
         private final Retrofit retrofit;
         private final CallAdapter<?, ?> wrapped;
 
@@ -48,7 +48,7 @@ public class RxErrorHandlingCallAdapterFactory extends CallAdapter.Factory {
         }
 
         @Override
-        public Object adapt(Call call) {
+        public Observable<?> adapt(Call call) {
             return ((Observable) wrapped.adapt(call)).onErrorResumeNext(new Func1<Throwable, Observable>() {
                 @Override
                 public Observable call(Throwable throwable) {
@@ -56,17 +56,6 @@ public class RxErrorHandlingCallAdapterFactory extends CallAdapter.Factory {
                 }
             });
         }
-
-//        @SuppressWarnings("unchecked")
-//        @Override
-//        public <R> Observable<?> adapt(Call<R> call) {
-//            return ((Observable) wrapped.adapt(call)).onErrorResumeNext(new Func1<Throwable, Observable>() {
-//                @Override
-//                public Observable call(Throwable throwable) {
-//                    return Observable.error(asRetrofitException(throwable));
-//                }
-//            });
-//        }
 
         private RetrofitException asRetrofitException(Throwable throwable) {
             // We had non-200 http error

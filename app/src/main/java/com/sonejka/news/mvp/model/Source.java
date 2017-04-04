@@ -49,19 +49,19 @@ public class Source {
         }
     }
 
-    public static Param emptyParam(){
+    public static Param emptyParam() {
         return param(null, null, null);
     }
 
-    public static Param defaultParam(){
+    public static Param defaultParam() {
         return param(RequestParam.ALL, RequestParam.ALL, RequestParam.ALL);
     }
 
-    public static Param param(@RequestParam.Category String category, @RequestParam.Language String language, @RequestParam.Country String country){
+    public static Param param(@RequestParam.Category String category, @RequestParam.Language String language, @RequestParam.Country String country) {
         return new Param(category, language, country);
     }
 
-    public static void saveParam(Param param){
+    public static void saveParam(Param param) {
 
     }
 }

@@ -9,6 +9,7 @@ import com.sonejka.news.di.annotation.ForApplication;
 import com.sonejka.news.network.API;
 import com.sonejka.news.network.MockNetworkService;
 import com.sonejka.news.network.NetworkService;
+import com.sonejka.news.network.RxErrorHandlingCallAdapterFactory;
 import com.sonejka.news.util.DataUtil;
 import com.sonejka.news.util.Logger;
 import com.squareup.picasso.Picasso;
@@ -52,7 +53,7 @@ public class NetworkModule {
                 Retrofit.Builder builder = new Retrofit.Builder()
                         .baseUrl(API.PRODUCTION.getBaseUrl())
                         .addConverterFactory(factory)
-                        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                        .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
                         .client(httpClient);
 
                 Retrofit retrofit = builder.build();

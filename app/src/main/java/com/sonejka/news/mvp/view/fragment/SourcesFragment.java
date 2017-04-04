@@ -82,7 +82,7 @@ public class SourcesFragment extends BaseFragment implements INewsView<Source, S
 
     @Override
     public void onFailure(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

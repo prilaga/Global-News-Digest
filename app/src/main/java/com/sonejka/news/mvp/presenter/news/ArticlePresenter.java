@@ -1,8 +1,11 @@
 package com.sonejka.news.mvp.presenter.news;
 
+import com.sonejka.news.App;
+import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Article;
 import com.sonejka.news.mvp.view.fragment.INewsView;
 import com.sonejka.news.network.ApiService;
+import com.sonejka.news.util.ErrorUtil;
 import com.sonejka.news.util.SubscriptionUtil;
 
 import javax.inject.Inject;
@@ -45,7 +48,8 @@ public class ArticlePresenter implements INewsPresenter<INewsView<Article, Artic
 
         @Override
         public void onError(Throwable e) {
-            mArticleView.onFailure(e.toString());
+            String message = ErrorUtil.handleError(App.getContext(), e, R.string.error_articles_loading);
+            mArticleView.onFailure(message);
         }
 
         @Override

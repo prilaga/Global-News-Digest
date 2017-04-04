@@ -8,4 +8,8 @@
     <string name="language">Language</string>
     <string name="country">Country</string>
 
+    <string name="error_network">A network error occurred, please check your connection.</string>
+    <string name="error_sources_loading">Woops! Something went wrong while loading sources.\nThis error has been reported to the developers.</string>
+    <string name="error_articles_loading">Woops! Something went wrong while loading articles.\nThis error has been reported to the developers.</string>
+
 </resources>

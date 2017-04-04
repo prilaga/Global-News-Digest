@@ -1,8 +1,11 @@
 package com.sonejka.news.mvp.presenter.news;
 
+import com.sonejka.news.App;
+import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.fragment.INewsView;
 import com.sonejka.news.network.ApiService;
+import com.sonejka.news.util.ErrorUtil;
 import com.sonejka.news.util.SubscriptionUtil;
 
 import javax.inject.Inject;
@@ -17,7 +20,7 @@ import rx.Subscription;
 public class SourcePresenter implements INewsPresenter<INewsView<Source, Source.Param>, Source.Param> {
 
     private ApiService mApiService;
-    private INewsView<Source, Source.Param> mNewsView;
+    private INewsView<Source, Source.Param> mSourceView;
     private Subscription mSubscription;
 
     @Inject
@@ -27,13 +30,13 @@ public class SourcePresenter implements INewsPresenter<INewsView<Source, Source.
 
     @Override
     public void setView(INewsView<Source, Source.Param> sourceView) {
-        mNewsView = sourceView;
+        mSourceView = sourceView;
     }
 
     @Override
     public void loadData(Source.Param param) {
         unSubscribe();
-        mNewsView.onStartLoading();
+        mSourceView.onStartLoading();
         mSubscription = SubscriptionUtil.bindObservable(mApiService.getSources(param), sourceObserver);
     }
 
@@ -45,13 +48,14 @@ public class SourcePresenter implements INewsPresenter<INewsView<Source, Source.
 
         @Override
         public void onError(Throwable e) {
-            mNewsView.onFailure(e.toString());
+            String message = ErrorUtil.handleError(App.getContext(), e, R.string.error_sources_loading);
+            mSourceView.onFailure(message);
         }
 
         @Override
         public void onNext(Source source) {
             if (source != null)
-                mNewsView.updateRecycleView(source);
+                mSourceView.updateRecycleView(source);
         }
     };
 

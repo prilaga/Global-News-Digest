@@ -11,11 +11,12 @@ import okhttp3.logging.HttpLoggingInterceptor;
 public final class Logger implements HttpLoggingInterceptor.Logger {
 
     public static final String TAG = "LOG";
+    public static final String REST_TAG = "Rest";
     private static boolean showLog = false;
 
     @Override
     public void log(String message) {
-      d(TAG, message);
+      d(REST_TAG, message);
     }
 
     /**
@@ -46,6 +47,10 @@ public final class Logger implements HttpLoggingInterceptor.Logger {
     public static void e(String msg) {
         if (showLog)
             e(TAG, msg);
+    }
+
+    public static void e(Throwable throwable) {
+        Log.e(TAG, throwable.getMessage(), throwable);
     }
 
     public static void e(String msg, Throwable throwable) {

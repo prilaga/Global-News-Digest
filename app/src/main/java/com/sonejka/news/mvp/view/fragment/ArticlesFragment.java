@@ -82,7 +82,7 @@ public class ArticlesFragment extends BaseFragment implements INewsView<Article,
 
     @Override
     public void onFailure(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
