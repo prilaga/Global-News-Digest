@@ -2,6 +2,7 @@ package com.sonejka.news.di.module;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.jakewharton.picasso.OkHttp3Downloader;
@@ -25,7 +26,6 @@ import dagger.Provides;
 import okhttp3.OkHttpClient;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -38,9 +38,10 @@ public class NetworkModule {
     private Map<API, NetworkService> mNetworkServices = new HashMap<>(API.values().length);
 
     @Provides
+    @ForApplication
     NetworkService provideNetworkService(@Named(GsonModule.IDENTITY) Gson gson, @Named(OkHttpClientModule.API_CLIENT) OkHttpClient httpClient, DataUtil dataUtil) {
 
-        API api = dataUtil.load(API.class, API.TAG, API.PRODUCTION);
+        API api = dataUtil.load(API.class, API.TAG_KEY, API.PRODUCTION);
         NetworkService service = mNetworkServices.get(api);
 
         if (service == null) {

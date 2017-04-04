@@ -18,6 +18,7 @@ import com.sonejka.news.R;
 import com.sonejka.news.mvp.presenter.request.RequestPresenter;
 import com.sonejka.news.mvp.view.activity.BaseActivity;
 import com.sonejka.news.mvp.view.adapter.RequestAdapter;
+import com.sonejka.news.network.API;
 import com.sonejka.news.util.ActivityUtil;
 import com.sonejka.news.util.Logger;
 import com.sonejka.news.util.ViewUtil;
@@ -63,6 +64,11 @@ public class RequestCardView extends CardView implements IRequestCardView {
         baseActivity.getActivityComponent().inject(this);
 
         presenter.setView(this);
+    }
+
+    @Override
+    public void setApi(API api) {
+        presenter.changeApi(api);
     }
 
     // region IRequestCardView

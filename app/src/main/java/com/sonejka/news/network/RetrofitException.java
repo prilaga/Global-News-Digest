@@ -90,9 +90,7 @@ public class RetrofitException extends RuntimeException {
     public String toString() {
         return "RetrofitException{" +
                 "url='" + url + '\'' +
-                ", response=" + response +
                 ", kind=" + kind +
-                ", retrofit=" + retrofit +
                 '}';
     }
 }

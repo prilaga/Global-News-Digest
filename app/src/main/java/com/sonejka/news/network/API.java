@@ -17,7 +17,7 @@ public enum API {
     MOCK("https://mock.com");
 
     public static final String API_KEY = "4c96c741e1444309ad86faafd9774f87";
-    public static final String TAG = "API";
+    public static final String TAG_KEY = "API";
 
     @Getter private String baseUrl;
 

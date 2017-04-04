@@ -36,4 +36,8 @@ public class App extends Application {
     public AppComponent getAppComponent() {
         return appComponent;
     }
+
+    public static App get(){
+        return (App)getContext();
+    }
 }

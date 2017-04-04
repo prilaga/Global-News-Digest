@@ -4,6 +4,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Article;
@@ -12,6 +15,8 @@ import com.sonejka.news.mvp.view.adapter.MainPagerAdapter;
 import com.sonejka.news.mvp.view.adapter.TabItem;
 import com.sonejka.news.mvp.view.widget.NewsTabLayout;
 import com.sonejka.news.mvp.view.widget.RequestCardView;
+import com.sonejka.news.network.API;
+import com.sonejka.news.util.DataUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,7 +31,7 @@ import butterknife.ButterKnife;
  * Created by Oleg Tarashkevich on 01.04.17.
  */
 
-public class MainActivity extends BaseActivity implements NewsTabLayout.CustomTabLayoutListener {
+public class MainActivity extends BaseActivity {
 
     @BindColor(R.color.primary) int primary;
     @BindColor(R.color.primary_dark) int primaryDark;
@@ -40,6 +45,7 @@ public class MainActivity extends BaseActivity implements NewsTabLayout.CustomTa
     @BindView(R.id.request_card_view) RequestCardView requestCardView;
 
     @Inject MainPagerAdapter pagerAdapter;
+    @Inject DataUtil dataUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +59,6 @@ public class MainActivity extends BaseActivity implements NewsTabLayout.CustomTa
         tabLayout.setBackgroundColor(primary);
         tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
         tabLayout.setTabTextColors(primaryLight, Color.WHITE);
-        tabLayout.setCustomTabLayoutListener(this);
 
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -78,7 +83,27 @@ public class MainActivity extends BaseActivity implements NewsTabLayout.CustomTa
     }
 
     @Override
-    public void onPageSelected(int position) {
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                API api = dataUtil.load(API.class, API.TAG_KEY, API.PRODUCTION);
+                requestCardView.setApi(api);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void changeApi(){
 
     }
 }
