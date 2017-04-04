@@ -85,7 +85,7 @@ public class RequestPresenter implements IRequestPresenter {
 
         @Override
         public void onError(Throwable e) {
-
+          e.printStackTrace();
         }
 
         @Override
@@ -121,7 +121,7 @@ public class RequestPresenter implements IRequestPresenter {
 
         @Override
         public void onError(Throwable e) {
-
+            e.printStackTrace();
         }
 
         @Override
