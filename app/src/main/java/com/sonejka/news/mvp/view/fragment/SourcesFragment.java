@@ -2,16 +2,13 @@ package com.sonejka.news.mvp.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 import com.sonejka.news.R;
-import com.sonejka.news.mvp.model.RequestParam;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.presenter.news.SourcePresenter;
 import com.sonejka.news.mvp.view.adapter.SourceRecyclerAdapter;
@@ -30,7 +27,7 @@ import butterknife.ButterKnife;
 
 public class SourcesFragment extends BaseFragment implements INewsView<Source, Source.Param> {
 
-    @BindView(R.id.recycler_view) FastScrollRecyclerView recyclerView;
+    @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
     @Inject SourcePresenter sourcePresenter;
     @Inject SourceRecyclerAdapter adapter;
