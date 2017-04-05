@@ -3,6 +3,7 @@ package com.sonejka.news.mvp.view.activity;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -10,10 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Article;
+import com.sonejka.news.mvp.model.ShowProgressEvent;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.adapter.MainPagerAdapter;
 import com.sonejka.news.mvp.view.adapter.TabItem;
@@ -50,6 +53,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.news_tabs) NewsTabLayout tabLayout;
     @BindView(R.id.main_pager_container) ViewPager viewPager;
     @BindView(R.id.request_card_view) RequestCardView requestCardView;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
 
     @Inject MainPagerAdapter pagerAdapter;
     @Inject DataUtil dataUtil;
@@ -102,6 +106,7 @@ public class MainActivity extends BaseActivity {
         viewPager.setCurrentItem(TabItem.SOURCES.ordinal(), true);
     }
 
+    // region Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -122,25 +127,7 @@ public class MainActivity extends BaseActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.action_settings:
-//                changeApi();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
-    // TODO: temporary
-    private void changeApi() {
-        API api = dataUtil.load(API.class, API.TAG_KEY, API.PRODUCTION);
-        api = api == API.PRODUCTION ? API.MOCK : API.PRODUCTION;
-        requestCardView.setApi(api);
-    }
-
-    public void onChangeApiClick(View view) {
+    private void onChangeApiClick(View view) {
 
         PopupMenu popupMenu = new PopupMenu(this, view);
         popupMenu.getMenuInflater().inflate(R.menu.menu_api, popupMenu.getMenu());
@@ -168,4 +155,14 @@ public class MainActivity extends BaseActivity {
         });
         popupMenu.show();
     }
+    // endregion
+
+    // region Progress bar
+    public void showProgress(boolean show){
+        if (progressBar != null){
+            int visibility = show ? View.VISIBLE : View.GONE;
+            progressBar.setVisibility(visibility);
+        }
+    }
+    // endregion
 }

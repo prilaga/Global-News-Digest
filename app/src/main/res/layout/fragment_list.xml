@@ -14,13 +14,4 @@
         android:clipToPadding="false"
         android:scrollbars="vertical"/>
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="@dimen/zz_size"
-        android:layout_height="@dimen/zz_size"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:visibility="gone"/>
-
 </RelativeLayout>

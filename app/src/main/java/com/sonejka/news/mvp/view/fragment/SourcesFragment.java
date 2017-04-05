@@ -74,17 +74,17 @@ public class SourcesFragment extends BaseFragment implements INewsView<Source, S
 
     @Override
     public void onStartLoading() {
-        showProgress();
+        showProgress(true);
     }
 
     @Override
     public void onFailure(String message) {
-        hideProgress();
+        showProgress(false);
     }
 
     @Override
     public void updateRecycleView(Source source) {
-        hideProgress();
+        showProgress(false);
         adapter.setData(source.getSources());
     }
     // endregion

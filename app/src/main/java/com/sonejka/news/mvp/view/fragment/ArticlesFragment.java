@@ -74,17 +74,17 @@ public class ArticlesFragment extends BaseFragment implements INewsView<Article,
 
     @Override
     public void onStartLoading() {
-       showProgress();
+        showProgress(true);
     }
 
     @Override
     public void onFailure(String message) {
-        hideProgress();
+        showProgress(false);
     }
 
     @Override
     public void updateRecycleView(Article article) {
-        hideProgress();
+        showProgress(false);
         adapter.setData(article.getArticles());
     }
     // endregion

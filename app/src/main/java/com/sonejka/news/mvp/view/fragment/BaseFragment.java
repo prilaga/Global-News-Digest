@@ -10,6 +10,7 @@ import com.sonejka.news.di.component.ActivityComponent;
 import com.sonejka.news.di.component.FragmentComponent;
 import com.sonejka.news.di.module.FragmentModule;
 import com.sonejka.news.mvp.view.activity.BaseActivity;
+import com.sonejka.news.mvp.view.activity.MainActivity;
 
 import butterknife.BindView;
 import butterknife.Optional;
@@ -20,26 +21,22 @@ import butterknife.Optional;
 
 public class BaseFragment extends Fragment {
 
-    @Nullable @BindView(R.id.progress_bar) ProgressBar progressBar;
-
     private FragmentComponent fragmentComponent;
 
-    public FragmentComponent getFragmentComponent(){
-         if (fragmentComponent == null){
-             BaseActivity activity = (BaseActivity) getActivity();
-             ActivityComponent activityComponent = activity.getActivityComponent();
-             fragmentComponent = activityComponent.plus(new FragmentModule(activity));
-         }
+    public FragmentComponent getFragmentComponent() {
+        if (fragmentComponent == null) {
+            BaseActivity activity = (BaseActivity) getActivity();
+            ActivityComponent activityComponent = activity.getActivityComponent();
+            fragmentComponent = activityComponent.plus(new FragmentModule(activity));
+        }
         return fragmentComponent;
     }
 
-    protected void showProgress() {
-        if (progressBar != null)
-            progressBar.setVisibility(View.VISIBLE);
+    protected void showProgress(boolean show) {
+        activity().showProgress(show);
     }
 
-    protected void hideProgress() {
-        if (progressBar != null)
-            progressBar.setVisibility(View.GONE);
+    protected MainActivity activity() {
+        return (MainActivity) getActivity();
     }
 }
