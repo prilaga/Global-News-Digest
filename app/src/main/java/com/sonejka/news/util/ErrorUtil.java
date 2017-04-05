@@ -14,11 +14,11 @@ import com.sonejka.news.network.RetrofitException;
 
 public final class ErrorUtil {
 
-    public static String handleError(Context context, Throwable e, @StringRes int resId) {
-        return handleError(context, e, context.getString(resId));
+    public static String handleError(Throwable e, @StringRes int resId) {
+        return handleError(e, TextUtil.string(resId));
     }
 
-    public static String handleError(Context context, Throwable e, String message) {
+    public static String handleError(Throwable e, String message) {
 
         if (e instanceof RetrofitException) {
             RetrofitException retrofitError = (RetrofitException) e;
@@ -29,7 +29,7 @@ public final class ErrorUtil {
         boolean isNetworkError = e != null && e instanceof RetrofitException && ((RetrofitException) e).getKind() == RetrofitException.Kind.NETWORK;
 
         if (isNetworkError) {
-            message = context.getString(R.string.error_network);
+            message = TextUtil.string(R.string.error_network);
         } else {
             if (e instanceof RetrofitException) {
                 try {
@@ -44,7 +44,7 @@ public final class ErrorUtil {
         }
 
         if (TextUtil.isNotEmpty(message)) {
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+            ViewUtil.shortToastCenter(message);
 //            Crashlytics.log("Error: " + message);
         }
 

@@ -48,7 +48,7 @@ public class ArticlePresenter implements INewsPresenter<INewsView<Article, Artic
 
         @Override
         public void onError(Throwable e) {
-            String message = ErrorUtil.handleError(App.getContext(), e, R.string.error_articles_loading);
+            String message = ErrorUtil.handleError(e, R.string.error_articles_loading);
             mArticleView.onFailure(message);
         }
 

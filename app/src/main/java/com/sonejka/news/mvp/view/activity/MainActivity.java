@@ -1,9 +1,7 @@
 package com.sonejka.news.mvp.view.activity;
 
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -12,11 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Article;
-import com.sonejka.news.mvp.model.ShowProgressEvent;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.adapter.MainPagerAdapter;
 import com.sonejka.news.mvp.view.adapter.TabItem;
@@ -96,6 +92,7 @@ public class MainActivity extends BaseActivity {
         EventBus.getDefault().unregister(this);
     }
 
+    // region Event Subscriptions
     @Subscribe
     public void onMoveToArticlesEvent(Article.Param param) {
         viewPager.setCurrentItem(TabItem.ARTICLES.ordinal(), true);
@@ -105,6 +102,7 @@ public class MainActivity extends BaseActivity {
     public void onMoveToASourcesEvent(Source.Param param) {
         viewPager.setCurrentItem(TabItem.SOURCES.ordinal(), true);
     }
+    // endregion
 
     // region Menu
     @Override

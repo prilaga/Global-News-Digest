@@ -48,7 +48,7 @@ public class SourcePresenter implements INewsPresenter<INewsView<Source, Source.
 
         @Override
         public void onError(Throwable e) {
-            String message = ErrorUtil.handleError(App.getContext(), e, R.string.error_sources_loading);
+            String message = ErrorUtil.handleError(e, R.string.error_sources_loading);
             mSourceView.onFailure(message);
         }
 
