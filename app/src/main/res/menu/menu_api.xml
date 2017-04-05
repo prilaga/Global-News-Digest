@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group_popupmenu">
+        <item
+            android:id="@+id/api_news"
+            android:title="@string/api_news" />
+        <item
+            android:id="@+id/api_mock"
+            android:title="@string/api_mock" />
+    </group>
+</menu>

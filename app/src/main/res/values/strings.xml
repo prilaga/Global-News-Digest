@@ -3,6 +3,9 @@
     <string name="subtitle">powered by NewsAPI.org</string>
     <string name="news_source_link">https://newsapi.org</string>
 
+    <string name="api_news">Production NewsApi.org API</string>
+    <string name="api_mock">Mock device API</string>
+
     <string name="sources">Sources</string>
     <string name="articles">Articles</string>
 

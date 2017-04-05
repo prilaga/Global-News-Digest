@@ -1,6 +1,7 @@
 package com.sonejka.news.mvp.view.activity;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.sonejka.news.R;
@@ -15,6 +17,7 @@ import com.sonejka.news.mvp.model.Article;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.adapter.MainPagerAdapter;
 import com.sonejka.news.mvp.view.adapter.TabItem;
+import com.sonejka.news.mvp.view.widget.ActionView;
 import com.sonejka.news.mvp.view.widget.NewsTabLayout;
 import com.sonejka.news.mvp.view.widget.RequestCardView;
 import com.sonejka.news.network.API;
@@ -70,7 +73,7 @@ public class MainActivity extends BaseActivity {
         EventBus.getDefault().register(this);
     }
 
-    private void setupToolbar(){
+    private void setupToolbar() {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_launcher);
         getSupportActionBar().setTitle(R.string.app_name);
@@ -104,25 +107,65 @@ public class MainActivity extends BaseActivity {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
+        MenuItem apiItem = menu.findItem(R.id.action_settings);
+
+        ActionView actionView = new ActionView(getApplicationContext());
+        actionView.setDrawable(R.drawable.ic_settings);
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onChangeApiClick(v);
+            }
+        });
+        apiItem.setActionView(actionView);
 
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                changeApi();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.action_settings:
+//                changeApi();
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 
     // TODO: temporary
-    private void changeApi(){
+    private void changeApi() {
         API api = dataUtil.load(API.class, API.TAG_KEY, API.PRODUCTION);
         api = api == API.PRODUCTION ? API.MOCK : API.PRODUCTION;
         requestCardView.setApi(api);
+    }
+
+    public void onChangeApiClick(View view) {
+
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_api, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+
+                switch (menuItem.getItemId()) {
+
+                    case R.id.api_news:
+                        requestCardView.setApi(API.PRODUCTION);
+                        return true;
+
+                    case R.id.api_mock:
+                        requestCardView.setApi(API.MOCK);
+                        return true;
+
+                    default:
+                        return false;
+                }
+
+            }
+        });
+        popupMenu.show();
     }
 }
