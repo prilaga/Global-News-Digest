@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Article;
@@ -63,6 +65,15 @@ public class MainActivity extends BaseActivity {
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
+        getSupportActionBar().setTitle(R.string.app_name);
+        getSupportActionBar().setSubtitle(R.string.subtitle);
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Toolbar title clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         EventBus.getDefault().register(this);
     }
 
@@ -95,12 +106,17 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                API api = dataUtil.load(API.class, API.TAG_KEY, API.PRODUCTION);
-                api = api == API.PRODUCTION ? API.MOCK : API.PRODUCTION;
-                requestCardView.setApi(api);
+                changeApi();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    // TODO: temporary
+    private void changeApi(){
+        API api = dataUtil.load(API.class, API.TAG_KEY, API.PRODUCTION);
+        api = api == API.PRODUCTION ? API.MOCK : API.PRODUCTION;
+        requestCardView.setApi(api);
     }
 }

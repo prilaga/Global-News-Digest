@@ -2,6 +2,7 @@ package com.sonejka.news.network;
 
 import com.google.gson.Gson;
 import com.sonejka.news.util.DataUtil;
+import com.sonejka.news.util.ViewUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +18,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Oleg Tarashkevich on 05/04/2017.
  */
 
+/**
+ * Helps to easy switch between different APIs
+ */
 public final class NetworkServicesContainer {
 
     private Map<API, NetworkService> mNetworkServices = new HashMap<>(API.values().length);
@@ -55,6 +59,7 @@ public final class NetworkServicesContainer {
         if (api != null) {
             mApi = api;
             mDataUtil.save(mApi, API.TAG_KEY);
+            ViewUtil.shortToastCenter(mApi.getName());
         }
         return mApi;
     }

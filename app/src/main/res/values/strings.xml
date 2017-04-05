@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Global News Digest</string>
+    <string name="subtitle">powered by NewsAPI.org</string>
+    <string name="news_source_link">https://newsapi.org</string>
 
     <string name="sources">Sources</string>
     <string name="articles">Articles</string>
