@@ -19,6 +19,8 @@ import com.sonejka.news.mvp.view.widget.NewsTabLayout;
 import com.sonejka.news.mvp.view.widget.RequestCardView;
 import com.sonejka.news.network.API;
 import com.sonejka.news.util.DataUtil;
+import com.sonejka.news.util.ShareUtil;
+import com.sonejka.news.util.TextUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -55,8 +57,8 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         getActivityComponent().inject(this);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
+
+        setupToolbar();
 
         tabLayout.setBackgroundColor(primary);
         tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
@@ -65,16 +67,20 @@ public class MainActivity extends BaseActivity {
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
+        EventBus.getDefault().register(this);
+    }
+
+    private void setupToolbar(){
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
         getSupportActionBar().setTitle(R.string.app_name);
         getSupportActionBar().setSubtitle(R.string.subtitle);
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Toolbar title clicked", Toast.LENGTH_SHORT).show();
+                ShareUtil.goToWeb(TextUtil.string(R.string.news_source_link));
             }
         });
-
-        EventBus.getDefault().register(this);
     }
 
     @Override

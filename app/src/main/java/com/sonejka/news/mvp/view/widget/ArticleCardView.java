@@ -1,6 +1,7 @@
 package com.sonejka.news.mvp.view.widget;
 
 import android.content.Context;
+import android.support.annotation.StringDef;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -10,12 +11,15 @@ import android.widget.TextView;
 import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Article;
 import com.sonejka.news.mvp.view.activity.BaseActivity;
+import com.sonejka.news.util.ShareUtil;
+import com.sonejka.news.util.TextUtil;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Oleg Tarashkevich on 02.04.17.
@@ -30,6 +34,7 @@ public class ArticleCardView extends CardView {
     @BindView(R.id.article_description_text_view) TextView descriptionTextView;
 
     @Inject Picasso picasso;
+    private Article.Entry mEntry;
 
     public ArticleCardView(Context context) {
         this(context, null);
@@ -54,18 +59,30 @@ public class ArticleCardView extends CardView {
     }
 
     public void setSource(Article.Entry entry) {
-        if (entry == null) {
+        mEntry = entry;
+        if (mEntry == null) {
             setVisibility(INVISIBLE);
         } else {
             setVisibility(VISIBLE);
 
-            nameTextView.setText(entry.getInfo());
-            titleTextView.setText(entry.getTitle());
-            urlTextView.setText(entry.getUrl());
-            descriptionTextView.setText(entry.getDescription());
+            nameTextView.setText(mEntry.getInfo());
+            titleTextView.setText(mEntry.getTitle());
+            urlTextView.setText(mEntry.getUrl());
+            descriptionTextView.setText(mEntry.getDescription());
 
-            picasso.load(entry.getUrlToImage())
+            picasso.load(mEntry.getUrlToImage())
                     .into(logoImageView);
+        }
+    }
+
+    @OnClick(R.id.article_share_button)
+    public void onShareClick() {
+        if (mEntry != null) {
+            String message = TextUtil.string(R.string.app_name) + ":\n" +
+                    mEntry.getTitle() + "\n\n" +
+                    mEntry.getDescription() + "\n" +
+                    mEntry.getUrl();
+            ShareUtil.shareText(message, R.string.app_name);
         }
     }
 }
