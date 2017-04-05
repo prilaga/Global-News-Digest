@@ -1,4 +1,4 @@
-package com.sonejka.news.di.module;
+package com.sonejka.news.network;
 
 import com.sonejka.news.network.API;
 

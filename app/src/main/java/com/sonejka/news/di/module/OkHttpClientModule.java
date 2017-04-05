@@ -1,6 +1,7 @@
 package com.sonejka.news.di.module;
 
 import com.sonejka.news.di.annotation.ForApplication;
+import com.sonejka.news.network.HeadersInterceptor;
 import com.sonejka.news.util.Logger;
 
 import java.util.concurrent.TimeUnit;
