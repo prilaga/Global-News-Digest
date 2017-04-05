@@ -6,6 +6,7 @@ import com.sonejka.news.mvp.model.RequestParam;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.widget.IRequestCardView;
 import com.sonejka.news.network.API;
+import com.sonejka.news.network.NetworkServicesContainer;
 import com.sonejka.news.util.DataUtil;
 import com.sonejka.news.util.SubscriptionUtil;
 
@@ -30,6 +31,7 @@ public class RequestPresenter implements IRequestPresenter {
 
     private final int DELAY = 0;
     @Inject DataUtil mDataUtil;
+    @Inject NetworkServicesContainer mNetworkServicesContainer;
 
     private PublishSubject<Void> mPublishSubject = PublishSubject.create();
     private Subscription mSubscription;
@@ -66,12 +68,10 @@ public class RequestPresenter implements IRequestPresenter {
         EventBus.getDefault().post(param);
     }
 
-    // https://github.com/codepath/android_guides/wiki/Dependency-Injection-with-Dagger-2
     @Override
     public void changeApi(API api) {
         if (api != null) {
-            mDataUtil.save(api, API.TAG_KEY);
-//            App.get().getAppComponent().inject(this);
+            mNetworkServicesContainer.setApi(api);
             postRequestParam();
         }
     }

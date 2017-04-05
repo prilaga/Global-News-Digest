@@ -96,6 +96,7 @@ public class MainActivity extends BaseActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 API api = dataUtil.load(API.class, API.TAG_KEY, API.PRODUCTION);
+                api = api == API.PRODUCTION ? API.MOCK : API.PRODUCTION;
                 requestCardView.setApi(api);
                 return true;
             default:

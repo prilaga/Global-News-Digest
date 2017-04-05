@@ -20,10 +20,14 @@ import rx.Observable;
 @ForApplication
 public class ApiService {
 
-    @Inject NetworkService mNetworkService;
+    @Inject NetworkServicesContainer mServicesContainer;
 
     @Inject
     public ApiService() {
+    }
+
+    public void setApi(API api){
+        mServicesContainer.setApi(api);
     }
 
     public Observable<Article> getArticles(Article.Param param) {
@@ -32,7 +36,7 @@ public class ApiService {
             params.put(API.Query.SOURCE, param.getSource());
         if (!TextUtils.isEmpty(param.getSortBy()))
             params.put(API.Query.SORT_BY, param.getSortBy());
-        return mNetworkService.getArticles(params);
+        return mServicesContainer.get().getArticles(params);
     }
 
     public Observable<Source> getSources(Source.Param param) {
@@ -43,6 +47,6 @@ public class ApiService {
             params.put(API.Query.LANGUAGE, param.getLanguage());
         if (!TextUtils.isEmpty(param.getCountry()))
             params.put(API.Query.COUNTRY, param.getCountry());
-        return mNetworkService.getSources(params);
+        return mServicesContainer.get().getSources(params);
     }
 }

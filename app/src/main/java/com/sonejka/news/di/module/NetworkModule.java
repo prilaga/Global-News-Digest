@@ -10,6 +10,7 @@ import com.sonejka.news.di.annotation.ForApplication;
 import com.sonejka.news.network.API;
 import com.sonejka.news.network.MockNetworkService;
 import com.sonejka.news.network.NetworkService;
+import com.sonejka.news.network.NetworkServicesContainer;
 import com.sonejka.news.network.RxErrorHandlingCallAdapterFactory;
 import com.sonejka.news.util.DataUtil;
 import com.sonejka.news.util.Logger;
@@ -35,34 +36,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkModule {
 
-    private Map<API, NetworkService> mNetworkServices = new HashMap<>(API.values().length);
-
     @Provides
     @ForApplication
-    NetworkService provideNetworkService(@Named(GsonModule.IDENTITY) Gson gson, @Named(OkHttpClientModule.API_CLIENT) OkHttpClient httpClient, DataUtil dataUtil) {
-
-        API api = dataUtil.load(API.class, API.TAG_KEY, API.PRODUCTION);
-        NetworkService service = mNetworkServices.get(api);
-
-        if (service == null) {
-
-            if (api.isMock())
-                service = new MockNetworkService(dataUtil);
-            else {
-                Converter.Factory factory = GsonConverterFactory.create(gson);
-
-                Retrofit.Builder builder = new Retrofit.Builder()
-                        .baseUrl(API.PRODUCTION.getBaseUrl())
-                        .addConverterFactory(factory)
-                        .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
-                        .client(httpClient);
-
-                Retrofit retrofit = builder.build();
-                service = retrofit.create(NetworkService.class);
-            }
-            mNetworkServices.put(api, service);
-        }
-        return service;
+    NetworkServicesContainer provideNetworkServicesContainer(@Named(GsonModule.IDENTITY) Gson gson, @Named(OkHttpClientModule.API_CLIENT) OkHttpClient httpClient, DataUtil dataUtil){
+        return new NetworkServicesContainer(gson, httpClient, dataUtil);
     }
 
     @Provides
