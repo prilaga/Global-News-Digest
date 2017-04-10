@@ -3,6 +3,7 @@ package com.sonejka.news.di.component;
 import com.sonejka.news.di.annotation.ForApplication;
 import com.sonejka.news.di.module.ActivityModule;
 import com.sonejka.news.di.module.AppModule;
+import com.sonejka.news.di.module.CacheModule;
 import com.sonejka.news.di.module.DataModule;
 import com.sonejka.news.di.module.GsonModule;
 import com.sonejka.news.di.module.NetworkModule;
@@ -21,7 +22,8 @@ import dagger.Component;
         GsonModule.class,
         DataModule.class,
         OkHttpClientModule.class,
-        NetworkModule.class})
+        NetworkModule.class,
+        CacheModule.class})
 public interface AppComponent {
 
     ActivityComponent plus(ActivityModule module);

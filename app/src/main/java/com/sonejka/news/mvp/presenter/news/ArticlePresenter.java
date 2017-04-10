@@ -1,7 +1,7 @@
 package com.sonejka.news.mvp.presenter.news;
 
-import com.sonejka.news.App;
 import com.sonejka.news.R;
+import com.sonejka.news.helper.ArticleRefreshable;
 import com.sonejka.news.mvp.model.Article;
 import com.sonejka.news.mvp.view.fragment.INewsView;
 import com.sonejka.news.network.ApiService;
@@ -19,13 +19,13 @@ import rx.Subscription;
 
 public class ArticlePresenter implements INewsPresenter<INewsView<Article, Article.Param>, Article.Param> {
 
-    private ApiService mApiService;
+    private ArticleRefreshable mArticleRefreshable;
     private INewsView<Article, Article.Param> mArticleView;
     private Subscription mSubscription;
 
     @Inject
-    public ArticlePresenter(ApiService apiService) {
-        mApiService = apiService;
+    public ArticlePresenter(ArticleRefreshable articleRefreshable) {
+        mArticleRefreshable = articleRefreshable;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ArticlePresenter implements INewsPresenter<INewsView<Article, Artic
     public void loadData(Article.Param param) {
         unSubscribe();
         mArticleView.onStartLoading();
-        mSubscription = SubscriptionUtil.bindObservable(mApiService.getArticles(param), articleObserver);
+        mSubscription = SubscriptionUtil.bindObservable(mArticleRefreshable.getObservable(param), articleObserver);
     }
 
     private Observer<Article> articleObserver = new Observer<Article>() {

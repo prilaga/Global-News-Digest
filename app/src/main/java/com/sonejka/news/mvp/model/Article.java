@@ -6,6 +6,7 @@ import com.sonejka.news.util.TextUtil;
 import java.util.Date;
 import java.util.List;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,17 +34,18 @@ public class Article {
             return getAuthor() + " | " + getPublishedDate();
         }
 
-        public String getAuthor(){
-           return author == null ? "" : author;
+        public String getAuthor() {
+            return author == null ? "" : author;
         }
 
         public String getPublishedDate() {
-            if (publishedAt!= null && TextUtil.isEmpty(publishedDate))
+            if (publishedAt != null && TextUtil.isEmpty(publishedDate))
                 publishedDate = DateUtil.dateToString(DateUtil.DateFormat.DATE_FORMAT, publishedAt);
             return publishedDate;
         }
     }
 
+    @EqualsAndHashCode()
     public static class Param {
         @Getter @Setter private String source;
         @Getter @Setter private String sortBy;

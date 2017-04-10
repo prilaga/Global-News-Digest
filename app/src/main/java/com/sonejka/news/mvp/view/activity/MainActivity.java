@@ -12,6 +12,7 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 
 import com.sonejka.news.R;
+import com.sonejka.news.helper.CacheManager;
 import com.sonejka.news.mvp.model.Article;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.adapter.MainPagerAdapter;
@@ -53,6 +54,7 @@ public class MainActivity extends BaseActivity {
 
     @Inject MainPagerAdapter pagerAdapter;
     @Inject DataUtil dataUtil;
+    @Inject CacheManager cacheManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,7 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        cacheManager.reset();
     }
 
     // region Event Subscriptions
