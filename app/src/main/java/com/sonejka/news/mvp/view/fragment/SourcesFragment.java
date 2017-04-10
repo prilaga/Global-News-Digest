@@ -62,6 +62,7 @@ public class SourcesFragment extends BaseFragment implements INewsView<Source, S
     public void onPause() {
         super.onPause();
         EventBus.getDefault().unregister(this);
+        sourcePresenter.unSubscribe();
     }
 
     // region INewsView

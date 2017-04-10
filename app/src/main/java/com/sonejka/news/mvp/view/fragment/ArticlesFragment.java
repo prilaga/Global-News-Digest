@@ -62,6 +62,7 @@ public class ArticlesFragment extends BaseFragment implements INewsView<Article,
     public void onPause() {
         super.onPause();
         EventBus.getDefault().unregister(this);
+        articlePresenter.unSubscribe();
     }
 
     // region INewsView
