@@ -1,6 +1,7 @@
 package com.sonejka.news.mvp.model;
 
 import com.sonejka.news.util.DateUtil;
+import com.sonejka.news.util.TextUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -26,12 +27,20 @@ public class Article {
         @Getter private String urlToImage;
         @Getter private Date publishedAt;
 
+        private String publishedDate = "";
+
         public String getInfo() {
-            return author + " | " + getPublishedDate();
+            return getAuthor() + " | " + getPublishedDate();
         }
 
-        public String getPublishedDate(){
-            return DateUtil.dateToString(DateUtil.DateFormat.DATE_FORMAT, publishedAt);
+        public String getAuthor(){
+           return author == null ? "" : author;
+        }
+
+        public String getPublishedDate() {
+            if (publishedAt!= null && TextUtil.isEmpty(publishedDate))
+                publishedDate = DateUtil.dateToString(DateUtil.DateFormat.DATE_FORMAT, publishedAt);
+            return publishedDate;
         }
     }
 
@@ -45,11 +54,11 @@ public class Article {
         }
     }
 
-    public static Param param(){
-      return param(null, null);
+    public static Param param() {
+        return param(null, null);
     }
 
-    public static Param param(String source, @RequestParam.SortBy String sortBy){
-       return new Param(source, sortBy);
+    public static Param param(String source, @RequestParam.SortBy String sortBy) {
+        return new Param(source, sortBy);
     }
 }

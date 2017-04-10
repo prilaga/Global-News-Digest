@@ -9,6 +9,8 @@ import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.widget.SourceCardView;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -20,6 +22,9 @@ import butterknife.ButterKnife;
 
 public class SourceRecyclerAdapter extends BaseRecyclerAdapter<Source.Entry, SourceRecyclerAdapter.SourceViewHolder> {
 
+    private final int DEFAULT_POSITION = -1;
+    private int selectedSource = DEFAULT_POSITION;
+
     @Inject
     public SourceRecyclerAdapter() {
     }
@@ -30,8 +35,25 @@ public class SourceRecyclerAdapter extends BaseRecyclerAdapter<Source.Entry, Sou
     }
 
     @Override
-    protected void onBindViewHolder(SourceViewHolder holder, Source.Entry entry, int position) {
+    protected void onBindViewHolder(SourceViewHolder holder, Source.Entry entry, final int position) {
         holder.cardView.setSource(entry);
+        holder.cardView.setSelected(selectedSource == position);
+        holder.cardView.setCardSelection(new SourceCardView.CardSelection() {
+            @Override
+            public void onSelected(Source.Entry selectedEntry) {
+                // deselect view
+                notifyItemChanged(selectedSource);
+                selectedSource = position;
+                // select view
+                notifyItemChanged(selectedSource);
+            }
+        });
+    }
+
+    @Override
+    public void setData(List<Source.Entry> data) {
+        selectedSource = DEFAULT_POSITION;
+        super.setData(data);
     }
 
     static class SourceViewHolder extends RecyclerView.ViewHolder {
@@ -42,4 +64,7 @@ public class SourceRecyclerAdapter extends BaseRecyclerAdapter<Source.Entry, Sou
             ButterKnife.bind(this, itemView);
         }
     }
+
+
+
 }

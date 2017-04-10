@@ -15,8 +15,6 @@ import lombok.experimental.Accessors;
  * Created by Oleg Tarashkevich on 28/03/2017.
  */
 
-// https://github.com/codepath/android_guides/wiki/Dependency-Injection-with-Dagger-2
-
 @Accessors(prefix = "s")
 public class App extends Application {
 

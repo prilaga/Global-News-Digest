@@ -13,7 +13,7 @@
             android:id="@+id/source_logo_view"
             android:layout_width="@dimen/z_size"
             android:layout_height="@dimen/z_size"
-            tools:src="@mipmap/ic_launcher"/>
+            tools:src="@drawable/ic_newspaper"/>
 
         <LinearLayout
             android:id="@+id/tag_layout"

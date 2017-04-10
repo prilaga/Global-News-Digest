@@ -1,6 +1,8 @@
 package com.sonejka.news.mvp.view.widget;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.annotation.ColorRes;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -20,9 +22,12 @@ import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
 
+import butterknife.BindColor;
 import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Created by Oleg Tarashkevich on 01.04.17.
@@ -36,9 +41,11 @@ public class SourceCardView extends CardView implements View.OnClickListener {
     @BindView(R.id.source_url_text_view) TextView urlTextView;
 
     @BindDimen(R.dimen.z_size) int logoSize;
+    @BindColor(R.color.primary_light) int primaryLight;
 
     @Inject Picasso picasso;
     private Source.Entry mEntry;
+    @Setter @Accessors(prefix = "m") private CardSelection mCardSelection;
 
     public SourceCardView(Context context) {
         this(context, null);
@@ -83,11 +90,24 @@ public class SourceCardView extends CardView implements View.OnClickListener {
         }
     }
 
+    public void setSelected(boolean selected){
+        int color = selected ? primaryLight : Color.WHITE;
+        setCardBackgroundColor(color);
+    }
+
     @Override
     public void onClick(View v) {
         if (mEntry != null) {
+
+            if (mCardSelection != null)
+                mCardSelection.onSelected(mEntry);
+
             @RequestParam.SortBy String sortBy = ListUtil.getFirst(mEntry.getSortBysAvailable());
             EventBus.getDefault().post(Article.param(mEntry.getId(), sortBy));
         }
+    }
+
+    public interface CardSelection{
+        void onSelected(Source.Entry selectedEntry);
     }
 }
