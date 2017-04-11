@@ -2,6 +2,7 @@ package com.sonejka.news.mvp.model;
 
 import java.util.List;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,6 +37,7 @@ public class Source {
         @Getter private String large;
     }
 
+    @EqualsAndHashCode()
     public static class Param {
         public static final String TAG = "Source.Param";
         @Getter @Setter private String category;
