@@ -19,6 +19,7 @@ import com.sonejka.news.util.ListUtil;
 import com.sonejka.news.util.Logger;
 import com.sonejka.news.util.TextUtil;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -86,17 +87,19 @@ public class SourceCardView extends CardView implements View.OnClickListener {
 
             try {
                 picasso.load(TextUtil.getEmptyUrl(entry.getUrlsToLogos().getMedium()))
+                        .placeholder(R.drawable.ic_newspaper)
+                        .error(R.drawable.ic_newspaper)
                         .centerInside()
                         .resize(logoSize, logoSize)
                         .onlyScaleDown()
                         .into(logoImageView);
-            } catch (Throwable e){
+            } catch (Throwable e) {
                 Logger.e(e);
             }
         }
     }
 
-    public void setSelected(boolean selected){
+    public void setSelected(boolean selected) {
         int color = selected ? primaryLight : Color.WHITE;
         setCardBackgroundColor(color);
     }
@@ -113,7 +116,7 @@ public class SourceCardView extends CardView implements View.OnClickListener {
         }
     }
 
-    public interface CardSelection{
+    public interface CardSelection {
         void onSelected(Source.Entry selectedEntry);
     }
 }
