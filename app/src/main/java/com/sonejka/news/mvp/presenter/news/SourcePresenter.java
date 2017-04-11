@@ -18,13 +18,13 @@ import rx.Subscription;
 
 public class SourcePresenter implements INewsPresenter<INewsView<Source, Source.Param>, Source.Param> {
 
-    private SourcesRefreshable mSourcesRefreshable;
     private INewsView<Source, Source.Param> mSourceView;
     private Subscription mSubscription;
 
+    @Inject SourcesRefreshable mSourcesRefreshable;
+
     @Inject
-    public SourcePresenter(SourcesRefreshable sourcesRefreshable) {
-        mSourcesRefreshable = sourcesRefreshable;
+    public SourcePresenter() {
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.sonejka.news.mvp.presenter.request;
 
-import com.sonejka.news.App;
-import com.sonejka.news.di.annotation.ForActivity;
+import com.sonejka.news.helper.CacheManager;
 import com.sonejka.news.mvp.model.RequestParam;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.widget.IRequestCardView;
@@ -26,12 +25,12 @@ import rx.subjects.PublishSubject;
  * Created by Oleg Tarashkevich on 02.04.17.
  */
 
-@ForActivity
 public class RequestPresenter implements IRequestPresenter {
 
     private final int DELAY = 0;
     @Inject DataUtil mDataUtil;
     @Inject NetworkServicesContainer mNetworkServicesContainer;
+    @Inject CacheManager cacheManager;
 
     private PublishSubject<Void> mPublishSubject = PublishSubject.create();
     private Subscription mSubscription;
@@ -71,6 +70,7 @@ public class RequestPresenter implements IRequestPresenter {
     @Override
     public void changeApi(API api) {
         if (api != null) {
+            cacheManager.reset();
             mNetworkServicesContainer.setApi(api);
             postRequestParam();
         }

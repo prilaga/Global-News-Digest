@@ -102,7 +102,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Subscribe
-    public void onMoveToASourcesEvent(Source.Param param) {
+    public void onMoveToSourcesEvent(Source.Param param) {
         viewPager.setCurrentItem(TabItem.SOURCES.ordinal(), true);
     }
     // endregion

@@ -1,6 +1,7 @@
 package com.sonejka.news.mvp.presenter.news;
 
 import com.sonejka.news.R;
+import com.sonejka.news.di.annotation.ForActivity;
 import com.sonejka.news.helper.ArticleRefreshable;
 import com.sonejka.news.mvp.model.Article;
 import com.sonejka.news.mvp.view.fragment.INewsView;
@@ -18,13 +19,13 @@ import rx.Subscription;
 
 public class ArticlePresenter implements INewsPresenter<INewsView<Article, Article.Param>, Article.Param> {
 
-    private ArticleRefreshable mArticleRefreshable;
     private INewsView<Article, Article.Param> mArticleView;
     private Subscription mSubscription;
 
+    @Inject ArticleRefreshable mArticleRefreshable;
+
     @Inject
-    public ArticlePresenter(ArticleRefreshable articleRefreshable) {
-        mArticleRefreshable = articleRefreshable;
+    public ArticlePresenter() {
     }
 
     @Override
