@@ -4,6 +4,12 @@
       tools:context=".ui.activity.MainActivity">
 
     <item
+        android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_circular_arrow"
+        android:title="@string/refresh"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings"
         android:title="@string/settings"

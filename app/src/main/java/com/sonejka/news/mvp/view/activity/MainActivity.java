@@ -113,17 +113,30 @@ public class MainActivity extends BaseActivity {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-        MenuItem apiItem = menu.findItem(R.id.action_settings);
+        MenuItem refreshItem = menu.findItem(R.id.action_refresh);
+        MenuItem settingsItem = menu.findItem(R.id.action_settings);
 
-        ActionView actionView = new ActionView(getApplicationContext());
-        actionView.setDrawable(R.drawable.ic_settings);
-        actionView.setOnClickListener(new View.OnClickListener() {
+        ActionView refreshView = new ActionView(getApplicationContext());
+        refreshView.setDrawable(R.drawable.ic_circular_arrow);
+        refreshView.setDuration(1000L);
+        refreshView.setRotationValues(new float[]{0.0f, 360.f});
+        refreshView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        refreshItem.setActionView(refreshView);
+
+        ActionView settingsView = new ActionView(getApplicationContext());
+        settingsView.setDrawable(R.drawable.ic_settings);
+        settingsView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onChangeApiClick(v);
             }
         });
-        apiItem.setActionView(actionView);
+        settingsItem.setActionView(settingsView);
 
         return super.onCreateOptionsMenu(menu);
     }
