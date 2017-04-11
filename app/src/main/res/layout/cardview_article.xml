@@ -72,6 +72,36 @@
 
         </LinearLayout>
 
+        <!--For bun feature-->
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical">-->
+
+            <!--<Button-->
+                <!--android:id="@+id/article_ban_button"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/selector_ripple"-->
+                <!--android:drawableLeft="@drawable/ic_ban"-->
+                <!--android:drawablePadding="@dimen/m_size"-->
+                <!--android:drawableStart="@drawable/ic_ban"-->
+                <!--android:gravity="center_vertical|right"-->
+                <!--android:paddingLeft="@dimen/l_size"-->
+                <!--android:text="Never show"/>-->
+
+            <!--<ImageButton-->
+                <!--android:id="@+id/article_share_button"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_margin="@dimen/m_size"-->
+                <!--android:background="@drawable/selector_ripple"-->
+                <!--android:src="@drawable/ic_share"/>-->
+
+        <!--</RelativeLayout>-->
+
     </LinearLayout>
 
 </merge>

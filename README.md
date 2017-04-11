@@ -8,6 +8,8 @@ I used MVP pattern, Dependency Injection with Dagger 2, request to https://newsa
 - Added ability to change sources of news.
 - Created animated views and placed on toolbar
 
+- APK file: [link](https://www.dropbox.com/s/9e1z09p6ijgtvfj/Global%20News%20Digest%201.0.2-debug.apk?dl=0)
+
 ### Infomation
 
 - Author：[Oleg Tarashkevich](http://prilaga.com)
