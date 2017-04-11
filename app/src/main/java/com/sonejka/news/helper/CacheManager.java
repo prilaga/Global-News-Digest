@@ -1,9 +1,8 @@
 package com.sonejka.news.helper;
 
-import android.util.SparseArray;
-
 import com.sonejka.news.mvp.model.Article;
 import com.sonejka.news.mvp.model.Source;
+import com.sonejka.news.util.LimitedSparseArray;
 
 /**
  * Created by Oleg Tarashkevich on 10.04.17.
@@ -11,8 +10,8 @@ import com.sonejka.news.mvp.model.Source;
 
 public class CacheManager {
 
-    private SparseArray<Article> mArticles;
-    private SparseArray<Source> mSources;
+    private LimitedSparseArray<Article> mArticles;
+    private LimitedSparseArray<Source> mSources;
 
     public void reset() {
         clearArticles();
@@ -29,7 +28,7 @@ public class CacheManager {
 
     public void setArticle(Article article, Article.Param param) {
         if (mArticles == null)
-            mArticles = new SparseArray<>();
+            mArticles = new LimitedSparseArray<>(10);
         mArticles.put(param.hashCode(), article);
     }
 
@@ -48,7 +47,7 @@ public class CacheManager {
 
     public void setSource(Source source, Source.Param param) {
         if (mSources == null)
-            mSources = new SparseArray<>();
+            mSources = new LimitedSparseArray<>(10);
         mSources.put(param.hashCode(), source);
     }
 
