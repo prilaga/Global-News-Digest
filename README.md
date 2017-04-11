@@ -11,4 +11,4 @@ Created custom card views for Sources and Articles of news. Added ability to cha
 - Website: [Prilaga.com](http://prilaga.com)
 - Google Play: [Developers page](https://play.google.com/store/apps/dev?id=5246074920016878549) 
 
-![demo image](https://github.com/OlegTarashkevich/Global-News-Digest/blob/master/device-2017-04-09-232722.png "demo image")
+<img src="https://github.com/OlegTarashkevich/Global-News-Digest/blob/master/device-2017-04-09-232722.png?raw=true" width="888">
