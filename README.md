@@ -9,6 +9,7 @@ I used MVP pattern, Dependency Injection with Dagger 2, request to https://newsa
 - Created animated views and placed on toolbar
 
 ### APK file: [download](https://www.dropbox.com/s/9e1z09p6ijgtvfj/Global%20News%20Digest%201.0.2-debug.apk?dl=0)
+- Video on [YouTube](https://youtu.be/xm-Rl07fVwo)
 
 ### Infomation
 
@@ -17,3 +18,4 @@ I used MVP pattern, Dependency Injection with Dagger 2, request to https://newsa
 - Google Play: [Developers page](https://play.google.com/store/apps/dev?id=5246074920016878549)
 
 <img src="https://github.com/OlegTarashkevich/Global-News-Digest/blob/master/device-2017-04-09-232722.png?raw=true" width="444">
+
