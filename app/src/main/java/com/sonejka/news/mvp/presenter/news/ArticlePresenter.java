@@ -4,7 +4,6 @@ import com.sonejka.news.R;
 import com.sonejka.news.helper.ArticleRefreshable;
 import com.sonejka.news.mvp.model.Article;
 import com.sonejka.news.mvp.view.fragment.INewsView;
-import com.sonejka.news.network.ApiService;
 import com.sonejka.news.util.ErrorUtil;
 import com.sonejka.news.util.SubscriptionUtil;
 

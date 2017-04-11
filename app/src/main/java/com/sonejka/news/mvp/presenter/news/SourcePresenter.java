@@ -1,10 +1,9 @@
 package com.sonejka.news.mvp.presenter.news;
 
-import com.sonejka.news.App;
 import com.sonejka.news.R;
+import com.sonejka.news.helper.SourcesRefreshable;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.fragment.INewsView;
-import com.sonejka.news.network.ApiService;
 import com.sonejka.news.util.ErrorUtil;
 import com.sonejka.news.util.SubscriptionUtil;
 
@@ -19,13 +18,13 @@ import rx.Subscription;
 
 public class SourcePresenter implements INewsPresenter<INewsView<Source, Source.Param>, Source.Param> {
 
-    private ApiService mApiService;
+    private SourcesRefreshable mSourcesRefreshable;
     private INewsView<Source, Source.Param> mSourceView;
     private Subscription mSubscription;
 
     @Inject
-    public SourcePresenter(ApiService apiService) {
-        mApiService = apiService;
+    public SourcePresenter(SourcesRefreshable sourcesRefreshable) {
+        mSourcesRefreshable = sourcesRefreshable;
     }
 
     @Override
@@ -37,7 +36,7 @@ public class SourcePresenter implements INewsPresenter<INewsView<Source, Source.
     public void loadData(Source.Param param) {
         unSubscribe();
         mSourceView.onStartLoading();
-        mSubscription = SubscriptionUtil.bindObservable(mApiService.getSources(param), sourceObserver);
+        mSubscription = SubscriptionUtil.bindObservable(mSourcesRefreshable.getObservable(param), sourceObserver);
     }
 
     private Observer<Source> sourceObserver = new Observer<Source>() {
