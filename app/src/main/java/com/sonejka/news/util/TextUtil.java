@@ -39,4 +39,9 @@ public final class TextUtil {
     public static boolean isNotEmpty(CharSequence str){
         return !TextUtils.isEmpty(str);
     }
+
+    // avoid for Picasso: java.lang.IllegalArgumentException: Path must not be empty.
+    public static String getEmptyUrl(String url){
+       return TextUtil.isEmpty(url) ? null : url;
+    }
 }

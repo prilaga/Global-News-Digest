@@ -16,6 +16,8 @@ import com.sonejka.news.mvp.model.RequestParam;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.activity.BaseActivity;
 import com.sonejka.news.util.ListUtil;
+import com.sonejka.news.util.Logger;
+import com.sonejka.news.util.TextUtil;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
@@ -82,11 +84,15 @@ public class SourceCardView extends CardView implements View.OnClickListener {
             descriptionTextView.setText(entry.getDescription());
             urlTextView.setText(entry.getUrl());
 
-            picasso.load(entry.getUrlsToLogos().getMedium())
-                    .centerInside()
-                    .resize(logoSize, logoSize)
-                    .onlyScaleDown()
-                    .into(logoImageView);
+            try {
+                picasso.load(TextUtil.getEmptyUrl(entry.getUrlsToLogos().getMedium()))
+                        .centerInside()
+                        .resize(logoSize, logoSize)
+                        .onlyScaleDown()
+                        .into(logoImageView);
+            } catch (Throwable e){
+                Logger.e(e);
+            }
         }
     }
 

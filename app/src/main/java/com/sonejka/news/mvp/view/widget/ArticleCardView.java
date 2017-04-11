@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.sonejka.news.R;
 import com.sonejka.news.mvp.model.Article;
 import com.sonejka.news.mvp.view.activity.BaseActivity;
+import com.sonejka.news.util.Logger;
 import com.sonejka.news.util.ShareUtil;
 import com.sonejka.news.util.TextUtil;
 import com.squareup.picasso.Picasso;
@@ -70,8 +71,12 @@ public class ArticleCardView extends CardView {
             urlTextView.setText(mEntry.getUrl());
             descriptionTextView.setText(mEntry.getDescription());
 
-            picasso.load(mEntry.getUrlToImage())
-                    .into(logoImageView);
+            try {
+                picasso.load(TextUtil.getEmptyUrl(mEntry.getUrlToImage()))
+                        .into(logoImageView);
+            } catch (Throwable e) {
+                Logger.e(e);
+            }
         }
     }
 

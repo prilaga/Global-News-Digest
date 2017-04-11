@@ -6,6 +6,7 @@ import com.sonejka.news.util.TextUtil;
 import java.util.Date;
 import java.util.List;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,19 +15,21 @@ import lombok.Setter;
  * Created by Oleg Tarashkevich on 29/03/2017.
  */
 
+@Getter
 public class Article {
 
-    @Getter private String status;
-    @Getter private String sortBy;
-    @Getter private List<Entry> articles;
+    private String status;
+    private String sortBy;
+    private List<Entry> articles;
 
+    @Getter
     public static class Entry {
-        @Getter private String author;
-        @Getter private String title;
-        @Getter private String description;
-        @Getter private String url;
-        @Getter private String urlToImage;
-        @Getter private Date publishedAt;
+        private String author;
+        private String title;
+        private String description;
+        private String url;
+        private String urlToImage;
+        private Date publishedAt;
 
         private String publishedDate = "";
 
@@ -45,10 +48,11 @@ public class Article {
         }
     }
 
+    @Data
     @EqualsAndHashCode()
     public static class Param {
-        @Getter @Setter private String source;
-        @Getter @Setter private String sortBy;
+        private String source;
+        private String sortBy;
 
         private Param(String source, @RequestParam.SortBy String sortBy) {
             this.source = RequestParam.parameter(source);

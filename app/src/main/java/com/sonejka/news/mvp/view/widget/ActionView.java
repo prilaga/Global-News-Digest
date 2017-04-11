@@ -23,13 +23,13 @@ import lombok.experimental.Accessors;
  * Created by Oleg Tarashkevich on 05/04/2017.
  */
 
-//@Accessors(fluent = true)
+@Accessors(prefix = "m")
 public class ActionView extends FrameLayout {
 
     @BindView(R.id.action_view_button) ImageButton imageButton;
     @Setter private OnClickListener mOnClickListener;
-    @Accessors(prefix = "m") @Setter private long mDuration = 500L;
-    @Accessors(prefix = "m") @Setter private float[] mRotationValues = new float[]{90.0F, 0.0F};
+    @Setter private long mDuration = 500L;
+    @Setter private float[] mRotationValues = new float[]{90.0F, 0.0F};
     private ValueAnimator valueAnimator;
 
     public ActionView(Context context) {
