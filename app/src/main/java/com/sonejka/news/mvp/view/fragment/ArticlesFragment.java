@@ -83,6 +83,7 @@ public class ArticlesFragment extends BaseFragment implements INewsView<Article,
         showProgress(false);
     }
 
+    @Subscribe
     @Override
     public void updateRecycleView(Article article) {
         showProgress(false);

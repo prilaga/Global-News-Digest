@@ -118,12 +118,11 @@ public class MainActivity extends BaseActivity {
 
         ActionView refreshView = new ActionView(getApplicationContext());
         refreshView.setDrawable(R.drawable.ic_circular_arrow);
-        refreshView.setDuration(1000L);
-        refreshView.setRotationValues(new float[]{0.0f, 360.f});
+        refreshView.setRotationValues(new float[]{0.0f, 180.f});
         refreshView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                requestCardView.refreshNews();
             }
         });
         refreshItem.setActionView(refreshView);

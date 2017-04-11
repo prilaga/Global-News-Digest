@@ -60,10 +60,6 @@ public class Article {
         }
     }
 
-    public static Param param() {
-        return param(null, null);
-    }
-
     public static Param param(String source, @RequestParam.SortBy String sortBy) {
         return new Param(source, sortBy);
     }

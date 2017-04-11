@@ -19,5 +19,7 @@ public interface IRequestPresenter {
 
     void changeApi(API api);
 
+    void refreshNews();
+
     void unSubscribe();
 }

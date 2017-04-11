@@ -1,6 +1,7 @@
 package com.sonejka.news.mvp.presenter.request;
 
 import com.sonejka.news.helper.CacheManager;
+import com.sonejka.news.mvp.model.Article;
 import com.sonejka.news.mvp.model.RequestParam;
 import com.sonejka.news.mvp.model.Source;
 import com.sonejka.news.mvp.view.widget.IRequestCardView;
@@ -70,10 +71,17 @@ public class RequestPresenter implements IRequestPresenter {
     @Override
     public void changeApi(API api) {
         if (api != null) {
-            cacheManager.reset();
             mNetworkServicesContainer.setApi(api);
-            postRequestParam();
+            refreshNews();
         }
+    }
+
+    @Override
+    public void refreshNews() {
+        // clear Articles list
+        EventBus.getDefault().post(new Article());
+        cacheManager.reset();
+        postRequestParam();
     }
 
     @Override

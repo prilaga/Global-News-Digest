@@ -10,6 +10,8 @@ public interface IRequestCardView {
 
     void setApi(API api);
 
+    void refreshNews();
+
     void setCategory(String[] categories, String category);
 
     void setLanguage(String[] languages, String language);

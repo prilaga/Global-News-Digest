@@ -71,6 +71,11 @@ public class RequestCardView extends CardView implements IRequestCardView {
         presenter.changeApi(api);
     }
 
+    @Override
+    public void refreshNews() {
+      presenter.refreshNews();
+    }
+
     // region IRequestCardView
     @Override
     public void setCategory(String[] categories, String category) {
