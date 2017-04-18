@@ -8,14 +8,14 @@ I used MVP pattern, Dependency Injection with Dagger 2, request to https://newsa
 - Added ability to change sources of news.
 - Created animated views and placed on toolbar
 
-### APK file: [download](https://www.dropbox.com/s/9e1z09p6ijgtvfj/Global%20News%20Digest%201.0.2-debug.apk?dl=0)
-- Video on [YouTube](https://youtu.be/xm-Rl07fVwo)
+<a href='https://play.google.com/store/apps/details?id=com.sonejka.news&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="30%" height="30%"/></a>
 
 ### Infomation
 
 - Author：[Oleg Tarashkevich](http://prilaga.com)
 - Website: [Prilaga.com](http://prilaga.com)
 - Google Play: [Developers page](https://play.google.com/store/apps/dev?id=5246074920016878549)
+- Video on [YouTube](https://youtu.be/xm-Rl07fVwo)
 
 <img src="https://github.com/OlegTarashkevich/Global-News-Digest/blob/master/device-2017-04-09-232722.png?raw=true" width="444">
 
