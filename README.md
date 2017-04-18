@@ -17,5 +17,5 @@ I used MVP pattern, Dependency Injection with Dagger 2, request to https://newsa
 - Google Play: [Developers page](https://play.google.com/store/apps/dev?id=5246074920016878549)
 - Video on [YouTube](https://youtu.be/xm-Rl07fVwo)
 
-<img src="https://github.com/OlegTarashkevich/Global-News-Digest/blob/master/device-2017-04-09-232722.png?raw=true" width="444">
+<img src="https://github.com/OlegTarashkevich/Global-News-Digest/blob/master/Untitled-1.png?raw=true">
 
